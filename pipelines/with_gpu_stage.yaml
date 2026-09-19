@@ -1,0 +1,51 @@
+name: with_gpu_stage
+version: 1.0.0
+description: >
+  Pipeline que testa o gate de GPU do Colibri Patterns.
+  Em CPU-only, o stage lichtfeld faz skip com exit 2 (limpo).
+  Em GPU, o stage lichtfeld roda 3DGS training de verdade.
+
+  Ilustra como a camada colibri_patterns/gpu_gate permite
+  pipelines com stages GPU-required sem quebrar em CPU-only envs.
+
+inputs:
+  photos_dir: ./input/drone_photos/
+  output_dir: ./outputs/with_gpu_stage/
+
+constraints:
+  engine_target: godot4
+
+stages:
+  # Stage CPU-only: Bycob funciona sempre
+  - id: terrain_cpu
+    tool: bycob_world
+    params:
+      output: "{{output_dir}}/terrain/"
+      terrain: true
+      vegetation: true
+      source: /opt/tools/world
+
+  # Stage GPU-required: skip limpo se CPU-only
+  - id: splat_gpu
+    tool: lichtfeld
+    params:
+      photos: "{{photos_dir}}"
+      output: "{{output_dir}}/splat/"
+      iter: 30000
+      sh: 3
+      compress: ksplat
+    # Se exit code 2 (skip de GPU), pipeline_runner continua
+    continue_on_skip: true
+
+  # Stage CPU-only: validação final (do terrain OBJ que Bycob gerou)
+  - id: validate
+    tool: bycob_world
+    params:
+      output: "{{output_dir}}/terrain/"
+      test: terrain
+      source: /opt/tools/world
+    # Re-executa Bycob só pra confirmar idempotência (output existe)
+
+outputs:
+  - "{{output_dir}}/terrain/"
+  - "{{output_dir}}/report.json"

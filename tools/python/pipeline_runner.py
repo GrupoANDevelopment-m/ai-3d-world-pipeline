@@ -89,6 +89,18 @@ def run_stage(stage: Dict[str, Any], ctx: Dict[str, Any]) -> Dict[str, Any]:
     log_path.parent.mkdir(parents=True, exist_ok=True)
     log_path.write_text(stdout + "\n--- STDERR ---\n" + stderr)
 
+    # Exit code 2 = "skip" (gpu_gate ou similar). Honra continue_on_skip.
+    if rc == 2:
+        if stage.get("continue_on_skip", False):
+            print(f"[pipeline_runner] ⏭  Estágio {stage_id} pulou (exit 2, continue_on_skip=true)")
+            return {
+                "stage": stage_id, "tool": tool, "kind": kind,
+                "params": rendered_params, "log": str(log_path),
+                "status": "skipped",
+            }
+        print(f"[pipeline_runner] ✗ Estágio {stage_id} skipou (exit 2) sem continue_on_skip")
+        raise RuntimeError(f"Stage {stage_id} skipped")
+
     if rc != 0:
         print(f"[pipeline_runner] ✗ Estágio {stage_id} falhou (exit {rc})")
         print(stderr[-1000:] if stderr else "")

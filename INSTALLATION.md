@@ -28,6 +28,25 @@ python3 tools/python/pipeline_runner.py \
     --var output_dir=./outputs/my_world/
 ```
 
+### Pipeline com GPU-gate: `pipelines/with_gpu_stage.yaml`
+
+```
+Bycob/world (CPU)        → terrain.obj
+        ↓
+LichtFeld (GPU-required) → skip com exit 2 (continue_on_skip=true)
+        ↓
+Bycob/world validate     → ok
+```
+
+**Rodando em CPU-only env**: LichtFeld skipa limpo, pipeline completa com `exit_code=0`.
+**Rodando em GPU env**: LichtFeld executa 3DGS training real.
+
+Inspirado em JustVugg/colibri (c/colibri.c):
+> "GPU support is opt-in via COLI_CUDA=1. Default is dependency-free CPU."
+
+Adaptado em `tools/colibri_patterns/gpu_gate.py` — cada wrapper GPU-required consulta
+o gate antes de tentar rodar.
+
 ---
 
 ## 📦 O que foi realmente instalado
