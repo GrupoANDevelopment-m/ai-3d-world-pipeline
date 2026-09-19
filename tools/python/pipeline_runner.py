@@ -30,12 +30,16 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 WRAPPERS_DIR = REPO_ROOT / "tools" / "cli-wrappers"
 
 
-def resolve_wrapper(tool: str) -> Path:
-    """Resolve nome do tool → path do wrapper."""
+def resolve_wrapper(tool: str):
+    """Resolve nome do tool → path do wrapper (.sh) OU módulo Python."""
     candidate = WRAPPERS_DIR / f"{tool}.sh"
     if candidate.exists():
-        return candidate
-    raise FileNotFoundError(f"Wrapper não encontrado para tool={tool}: {candidate}")
+        return ("sh", candidate)
+    # Tenta módulo Python em tools/python/<tool>.py
+    py_candidate = REPO_ROOT / "tools" / "python" / f"{tool}.py"
+    if py_candidate.exists():
+        return ("py", py_candidate)
+    raise FileNotFoundError(f"Wrapper nem módulo encontrado para tool={tool}")
 
 
 def run_stage(stage: Dict[str, Any], ctx: Dict[str, Any]) -> Dict[str, Any]:
@@ -49,34 +53,49 @@ def run_stage(stage: Dict[str, Any], ctx: Dict[str, Any]) -> Dict[str, Any]:
     # Substitui variáveis {{var}} nos parâmetros
     rendered_params = render_params(params, ctx)
 
-    # Decide entre CLI wrapper e Python module
-    wrapper = resolve_wrapper(tool)
+    kind, wrapper = resolve_wrapper(tool)
 
-    # Constrói comando
-    cmd = ["bash", str(wrapper)]
-    for key, value in rendered_params.items():
-        if isinstance(value, bool):
-            if value:
-                cmd.append(f"--{key.replace('_', '-')}")
-        elif isinstance(value, (list, tuple)):
-            cmd.extend([f"--{key.replace('_', '-')}", ",".join(map(str, value))])
-        else:
-            cmd.extend([f"--{key.replace('_', '-')}", str(value)])
+    if kind == "sh":
+        cmd = ["bash", str(wrapper)]
+        for key, value in rendered_params.items():
+            if isinstance(value, bool):
+                if value:
+                    cmd.append(f"--{key.replace('_', '-')}")
+            elif isinstance(value, (list, tuple)):
+                cmd.extend([f"--{key.replace('_', '-')}", ",".join(map(str, value))])
+            else:
+                cmd.extend([f"--{key.replace('_', '-')}", str(value)])
 
-    print(f"[pipeline_runner] $ {' '.join(cmd)}")
-    proc = subprocess.run(cmd, capture_output=True, text=True)
+        print(f"[pipeline_runner] $ {' '.join(cmd)}")
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+        rc, stdout, stderr = proc.returncode, proc.stdout, proc.stderr
+    else:  # py
+        # Para módulos Python, chamamos como `python3 -m tools.python.<tool>`
+        # e passamos args via CLI
+        module = f"tools.python.{tool}"
+        cmd = ["python3", "-m", module]
+        for key, value in rendered_params.items():
+            if isinstance(value, bool):
+                if value:
+                    cmd.append(f"--{key.replace('_', '-')}")
+            else:
+                cmd.extend([f"--{key.replace('_', '-')}", str(value)])
+
+        print(f"[pipeline_runner] $ {' '.join(cmd)}")
+        proc = subprocess.run(cmd, cwd=str(REPO_ROOT), capture_output=True, text=True)
+        rc, stdout, stderr = proc.returncode, proc.stdout, proc.stderr
 
     log_path = REPO_ROOT / "outputs" / "logs" / f"{stage_id}.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
-    log_path.write_text(proc.stdout + "\n--- STDERR ---\n" + proc.stderr)
+    log_path.write_text(stdout + "\n--- STDERR ---\n" + stderr)
 
-    if proc.returncode != 0:
-        print(f"[pipeline_runner] ✗ Estágio {stage_id} falhou (exit {proc.returncode})")
-        print(proc.stderr)
+    if rc != 0:
+        print(f"[pipeline_runner] ✗ Estágio {stage_id} falhou (exit {rc})")
+        print(stderr[-1000:] if stderr else "")
         raise RuntimeError(f"Stage {stage_id} failed")
 
     print(f"[pipeline_runner] ✓ Estágio {stage_id} ok")
-    return {"stage": stage_id, "tool": tool, "params": rendered_params, "log": str(log_path)}
+    return {"stage": stage_id, "tool": tool, "kind": kind, "params": rendered_params, "log": str(log_path)}
 
 
 def render_params(params: Dict[str, Any], ctx: Dict[str, Any]) -> Dict[str, Any]:

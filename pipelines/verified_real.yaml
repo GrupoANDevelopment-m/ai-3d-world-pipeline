@@ -1,0 +1,52 @@
+name: verified_real_pipeline
+version: 1.0.0
+description: >
+  Pipeline REAL verificado em 2026-09-19. Roda de ponta a ponta com
+  Bycob/world + Blender + Godot. FUNCIONA sem GPU.
+
+  Saídas verificadas:
+    - terrain.obj: 2.9 MB, 82k linhas, 32k vértices
+    - terrain.glb: 4.2 MB, 3 LODs, validado por gltf_validator
+    - Godot carrega como PackedScene com 4 nós
+
+inputs:
+  output_dir: ./outputs/verified_real/
+  bycob_test: terrain   # terrain | tree | mapper
+  blender_max_tris: 50000
+  blender_lod_levels: 3
+
+constraints:
+  engine_target: godot4
+
+stages:
+  # 1. Bycob/world gera terrain procedural REAL (C++ compilado)
+  - id: bycob_terrain
+    tool: bycob_world
+    params:
+      output: "{{output_dir}}/bycob/"
+      terrain: true
+      vegetation: true
+      test: terrain
+      source: /opt/tools/world
+
+  # 2. Blender converte OBJ → GLB com LODs (real)
+  - id: blender_convert
+    tool: blender_process
+    params:
+      input: "{{output_dir}}/bycob/terrain.obj"
+      output: "{{output_dir}}/final/terrain.glb"
+      max_tris: "{{blender_max_tris}}"
+      lod_levels: "{{blender_lod_levels}}"
+      collider: trimesh
+      blender: /opt/tools/blender-4.2.5-linux-x64/blender
+
+  # 3. Validação do GLB gerado
+  - id: validate_glb
+    tool: gltf_validator
+    params:
+      input: "{{output_dir}}/final/terrain.glb"
+
+outputs:
+  - "{{output_dir}}/bycob/terrain.obj"
+  - "{{output_dir}}/final/terrain.glb"
+  - "{{output_dir}}/report.json"

@@ -52,14 +52,30 @@ def process_in_blender(args: argparse.Namespace) -> None:
     elif ext == ".fbx":
         bpy.ops.import_scene.fbx(filepath=str(args.input))
     elif ext == ".obj":
-        bpy.ops.import_scene.obj(filepath=str(args.input))
+        # Blender 4.x: wm.obj_import (built-in). Fallback to import_scene.obj.
+        try:
+            bpy.ops.wm.obj_import(filepath=str(args.input))
+        except AttributeError:
+            try:
+                bpy.ops.import_scene.obj(filepath=str(args.input))
+            except AttributeError:
+                print("[asset_processor] Nenhum importador OBJ disponível.")
+                sys.exit(2)
     elif ext == ".ply":
         # PLY precisa de addon 'io_mesh_ply'
         try:
             bpy.ops.wm.ply_import(filepath=str(args.input))
         except AttributeError:
-            print("[asset_processor] PLY import requer addon 'io_mesh_ply'.")
-            sys.exit(2)
+            try:
+                bpy.ops.import_mesh.ply(filepath=str(args.input))
+            except AttributeError:
+                print("[asset_processor] PLY import requer addon 'io_mesh_ply'.")
+                sys.exit(2)
+    elif ext == ".stl":
+        try:
+            bpy.ops.wm.stl_import(filepath=str(args.input))
+        except AttributeError:
+            bpy.ops.import_mesh.stl(filepath=str(args.input))
     else:
         print(f"[asset_processor] Formato não suportado: {ext}")
         sys.exit(1)
@@ -187,6 +203,10 @@ def validate_standalone(path: Path) -> None:
 # =============================================================================
 
 def parse_args() -> argparse.Namespace:
+    """Parse args, tolerante a ser invocado via Blender (que injeta --background/--python no sys.argv).
+
+    Estratégia: se rodando dentro do Blender, encontra o `--` separador e usa só o que vem depois.
+    """
     p = argparse.ArgumentParser(description="Asset processor (Blender headless).")
     p.add_argument("--input", help="Mesh de entrada")
     p.add_argument("--output", help="Mesh de saída (.glb)")
@@ -197,6 +217,21 @@ def parse_args() -> argparse.Namespace:
                    default="trimesh")
     p.add_argument("--validate-only", action="store_true",
                    help="Só valida um .glb existente (não precisa de Blender).")
+
+    if IN_BLENDER:
+        # Quando Blender chama o script, sys.argv inclui ["blender", "--background",
+        # "--python", "<script>", "--", "--input", ...]. Pegamos só o que vier depois de `--`.
+        if "--" in sys.argv:
+            idx = sys.argv.index("--")
+            argv = sys.argv[idx + 1:]
+        else:
+            # Fallback: filtra só os args conhecidos do asset_processor
+            known = {"--input", "--output", "--max-tris", "--lod-levels",
+                     "--collider", "--validate-only"}
+            argv = [a for a in sys.argv[1:] if a in known or
+                    any(a.startswith(k + "=") for k in known)]
+        return p.parse_args(argv)
+
     return p.parse_args()
 
 
