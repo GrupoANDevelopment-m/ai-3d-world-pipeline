@@ -1,38 +1,41 @@
 ---
 name: worldgen
-version: 0.1.0
+version: 0.2.0
 triggers:
   - "text to 3d"
   - "text to world"
   - "gerar mundo de prompt"
   - "world generation"
   - "scene from text"
+  - "gaussian splat from text"
 inputs:
   required:
     - prompt: string
   optional:
     - reference_image: string
-    - style: realistic | stylized | anime | lowpoly
-    - resolution: [int, int]
-    - seed: int
+    - return_mesh: bool
+    - use_sharp: bool
+    - low_vram: bool
 outputs:
   type: scene
-  format: glb | godot | unity
+  format: ply  # gaussian splat ou mesh
 calls:
   - tool: worldgen
-    method: python_api
+    method: python
+  - tool: lichtfeld
+    method: cli
   - tool: gamefactory
-    method: python_api
+    method: python
 fallbacks:
   - if: worldgen_unavailable
-    then: gamefactory_only
-  - if: prompt_too_vague
-    then: ask_user_clarification
+    then: lichtfeld+gamefactory
+  - if: low_vram
+    then: enable_low_vram_mode
 ---
 
 # 🪄 Skill: WorldGen (text-to-3D)
 
-Gera cena 3D completa a partir de prompt em linguagem natural.
+Gera cena 3D (Gaussian Splat ou mesh) a partir de prompt em linguagem natural.
 
 ---
 
@@ -50,107 +53,90 @@ Gera cena 3D completa a partir de prompt em linguagem natural.
 [Prompt] + [reference_image opcional]
         │
         ▼
-[WorldGen] → cena base (skybox, lighting, objetos grandes)
+[WorldGen ZiYang-xie/WorldGen]
+   ├── text-to-scene (.ply Gaussian Splat)
+   └── image-to-scene
         │
         ▼
-[GameFactory-3A] → objetos detalhados + scattering
+[Opcional: return_mesh=True → mesh via Open3D]
         │
         ▼
-[Cena montada em GLB]
+[Asset processing] (Blender ou direct)
+        │
+        ▼
+[Cena montada em GLB/splat]
 ```
 
 ---
 
-## Exemplo de Uso
+## Uso Real (ZiYang-xie/WorldGen)
+
+### Instalação
+
+```bash
+git clone --recursive https://github.com/ZiYang-xie/WorldGen.git
+cd WorldGen
+conda create -n worldgen python=3.11
+conda activate worldgen
+pip3 install torch torchvision
+pip install .
+pip install git+https://github.com/EnVision-Research/DA-2.git#subdirectory=src --no-deps
+pip install git+https://github.com/facebookresearch/pytorch3d.git --no-build-isolation
+# Aceite a licença FLUX.1-dev em https://huggingface.co/black-forest-labs/FLUX.1-dev
+huggingface-cli login
+```
+
+### Modos
 
 ```python
-from worldgen import SceneGenerator
-from gamefactory import GameFactory
+from worldgen import WorldGen
+import torch
 
-# 1. Cena base
-gen = SceneGenerator(model="worldgen-xl")
-base = gen.generate(
-    prompt="Vila costeira portuguesa com falésias e farol ao entardecer",
-    style="realistic",
-    reference_image="./refs/coastal.jpg",  # opcional
-    seed=42,
-    resolution=(1920, 1080)
-)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# 2. Detalhes + scattering
-gf = GameFactory()
-scene = gf.gen_3d_scene(
-    prompt="Vila costeira portuguesa com falésias e farol",
-    density="high",
-    biome="mediterranean",
-    bounds=base.bounds,
-    base_scene=base,
-    output="./output/coastal/scene.glb"
-)
+# Modo t2s (text-to-scene)
+wg = WorldGen(mode="t2s", device=device, low_vram=False)
+splat = wg.generate_world("A beautiful landscape with a river and mountains")
+splat.save("scene.ply")
+
+# Modo i2s (image-to-scene)
+wg = WorldGen(mode="i2s", device=device)
+scene = wg.generate_world(image=pil_img, prompt="Optional: refine prompt")
+
+# Modo mesh
+mesh = wg.generate_world("cozy bedroom", return_mesh=True)
+o3d.io.write_triangle_mesh("bedroom.ply", mesh)
+```
+
+### Wrapper CLI
+
+```bash
+# Já implementado em tools/cli-wrappers/worldgen.sh
+bash tools/cli-wrappers/worldgen.sh \
+    --prompt "Vila costeira portuguesa com falésias" \
+    --output ./scene.ply
 ```
 
 ---
 
-## Estilos Suportados
+## Comparação de modelos text-to-3D
 
-| Estilo | Quando usar | Engine hint |
-|--------|-------------|-------------|
-| realistic | jogos AAA, simulação | PBR 4K, ray tracing |
-| stylized | jogos indie, mobile | PBR 1K, cel-shading |
-| anime | visual novel, JRPG | toon shader |
-| lowpoly | mobile, WebGL | flat shading, 512px |
-
----
-
-## Interpretação do Prompt
-
-WorldGen aplica um **parser semântico** para extrair:
-
-```json
-{
-  "objects": ["farol", "casas", "falésias"],
-  "attributes": {
-    "lighting": "entardecer",
-    "biome": "costeiro",
-    "style": "português"
-  },
-  "scene_constraints": {
-    "size_km": 2,
-    "weather": "limpo",
-    "time_of_day": "dusk"
-  }
-}
-```
-
-Se confiança < 0.6, a Skill pode pedir clarificação ao usuário.
+| Modelo | Velocidade | Qualidade | Output | Open Source |
+|--------|-----------|-----------|--------|-------------|
+| **WorldGen (ZiYang-xie)** | 2-5 min | alta | Gaussian Splat (.ply) | ✅ |
+| GameFactory-3A gen_3d_scene | 5-10 min | boa | GLB/OBJ (engine adapters) | ✅ |
+| Meshy | rápido | média | GLB | ❌ (API paga) |
+| TripoSR | muito rápido | média | GLB | ✅ |
+| LRM (Large Rec. Model) | lento | alta | GLB | ✅ |
 
 ---
 
-## Comparação com outros modelos text-to-3D
+## Validação
 
-| Modelo | Velocidade | Qualidade | Open Source |
-|--------|-----------|-----------|-------------|
-| WorldGen (Microsoft) | médio | alta | ✅ |
-| Genie (Google) | lento | altíssima | ❌ (research only) |
-| Meshy | rápido | média | ❌ (API paga) |
-| GameFactory-3A (op) | rápido | boa | ✅ |
-| TripoSR | muito rápido | média | ✅ |
-| LRM (Large Rec. Model) | lento | alta | ✅ |
-
----
-
-## Pós-processamento
-
-```python
-from tools.asset_processor import post_process
-
-post_process(
-    scene_path="./output/coastal/scene.glb",
-    target_polycount=200_000,
-    lod_levels=4,
-    colliders=True,
-    atlas_pbr=True
-)
+```bash
+python tools/python/gltf_validator.py --input scene.ply
+# ou
+python tools/python/pipeline_runner.py --pipeline pipelines/procedural.yaml --dry-run
 ```
 
 ---
@@ -159,17 +145,10 @@ post_process(
 
 ```json
 {
-  "scene": "./output/coastal/scene.glb",
-  "props": [
-    "./output/coastal/props/lighthouse.glb",
-    "./output/coastal/props/house_01.glb"
-  ],
-  "lighting_setup": {
-    "sun": "dusk",
-    "ambient": "warm_low"
-  },
-  "polycount_total": 187_500
+  "scene": "./output/coastal/scene.ply",
+  "mode": "t2s",
+  "prompt": "Vila costeira portuguesa com falésias e farol ao entardecer",
+  "use_sharp": false,
+  "polycount_or_splat_count": 1_847_000
 }
 ```
-
-Encaminha para `skills/scene-assembly.md`.

@@ -1,0 +1,88 @@
+name: osm_real_world
+version: 1.0.0
+description: >
+  Pipeline OSM → mundo 3D: gera uma área geográfica real a partir do
+  OpenStreetMap (prédios, ruas, vegetação) + terreno procedural ao redor.
+  Ideal para "recrie o centro de Lisboa" ou similar.
+
+inputs:
+  tile_x: 8580
+  tile_y: 5611
+  tiles_w: 2
+  tiles_h: 2
+  cache_dir: /data/rvt_gpak
+  output_dir: ./outputs/lisbon_real/
+  terrain_engine: terraforge   # terraforge | terrain3d
+  biome: coastal
+
+constraints:
+  engine_target: godot4
+  max_polycount: 600000
+
+stages:
+  # 1. Gera terreno procedural da região (montanha/coste/etc)
+  - id: terrain_base
+    tool: "{{terrain_engine}}"
+    params:
+      biome: "{{biome}}"
+      size_km: 4
+      resolution: 2048
+      seed: 42
+      features: erosion
+      output: "{{output_dir}}/terrain/"
+
+  # 2. Gera prédios/rede viária real do OSM
+  - id: osm_city
+    tool: rsgeotools
+    params:
+      x: "{{tile_x}}"
+      y: "{{tile_y}}"
+      w: "{{tiles_w}}"
+      h: "{{tiles_h}}"
+      cache_dir: "{{cache_dir}}"
+      output_dir: "{{output_dir}}/city/"
+      format: obj
+      z_up: true
+      merge: true
+
+  # 3. Processa mesh do terreno (PBR + LODs)
+  - id: process_terrain
+    tool: blender_process
+    params:
+      input: "{{output_dir}}/terrain/terrain.glb"
+      output: "{{output_dir}}/final/terrain.glb"
+      max_tris: 500000
+      lod_levels: 2
+      collider: trimesh
+
+  # 4. Processa OSM (já vem leve, mas padroniza para engine)
+  - id: process_osm
+    tool: blender_process
+    params:
+      input: "{{output_dir}}/city/merged.obj"
+      output: "{{output_dir}}/final/city.glb"
+      max_tris: 300000
+      lod_levels: 3
+      collider: trimesh
+
+  # 5. Assembly final no Godot
+  - id: godot_assembly
+    tool: terrain3d
+    params:
+      project: "{{output_dir}}/scene.godot/"
+      biome: "{{biome}}"
+      size_km: 4
+      resolution: 2048
+      seed: 42
+      output: "{{output_dir}}/final/"
+
+  - id: validate
+    tool: gltf_validator
+    params:
+      input: "{{output_dir}}/final/city.glb"
+
+outputs:
+  - "{{output_dir}}/scene.godot/"
+  - "{{output_dir}}/final/city.glb"
+  - "{{output_dir}}/final/terrain.glb"
+  - "{{output_dir}}/report.json"

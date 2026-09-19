@@ -1,14 +1,17 @@
 name: text_to_world
-version: 1.0.0
+version: 1.1.0
 description: >
-  Pipeline procedural completo: prompt → cena base WorldGen → terreno
-  procedural → objetos via GameFactory → montagem final.
+  Pipeline procedural completo: prompt → cena base WorldGen →
+  terreno procedural (TerraForge3D OU Terrain3D Godot) →
+  objetos via GameFactory-3A → asset processing (Blender) → montagem final.
 
 inputs:
   prompt: "Vila costeira portuguesa com falésias e farol ao entardecer"
   biome: coastal
   size_km: 4
   resolution: 2048
+  terrain_engine: terraforge   # terraforge | terrain3d | bycob | python
+  godot_project: ./mygame/      # obrigatório se terrain_engine=terrain3d
   output_dir: ./outputs/coastal_village/
 
 constraints:
@@ -21,40 +24,46 @@ stages:
     tool: worldgen
     params:
       prompt: "{{prompt}}"
-      style: realistic
-      seed: 42
-      output: "{{output_dir}}/base_scene/scene.glb"
+      output: "{{output_dir}}/base_scene/scene.ply"
+      return_mesh: false
+      use_sharp: false
 
   - id: terrain_procedural
-    tool: terraforge
+    tool: "{{terrain_engine}}"
     params:
       biome: "{{biome}}"
       size_km: "{{size_km}}"
       resolution: "{{resolution}}"
       seed: 42
-      features: erosion,rivers
-      output: "{{output_dir}}/terrain/terrain.glb"
-      heightmap: "{{output_dir}}/terrain/heightmap.png"
+      features: erosion
+      output: "{{output_dir}}/terrain/"
+      # project: "{{godot_project}}"   # descomente para terrain3d
 
   - id: vegetation_scatter
     tool: gamefactory
     params:
+      subcommand: gen_3d_scene
       prompt: "{{prompt}}"
       density: medium
       biome: "{{biome}}"
-      bounds: "0,0,4000,4000"
       output: "{{output_dir}}/vegetation/"
+      engine: godot4
 
-  - id: assembly
+  - id: asset_processing
     tool: blender_process
     params:
-      input: "{{output_dir}}/base_scene/scene.glb"
+      input: "{{output_dir}}/base_scene/scene.ply"
       output: "{{output_dir}}/final/scene.glb"
       max_tris: 500000
       lod_levels: 3
       collider: trimesh
 
+  - id: validate
+    tool: gltf_validator
+    params:
+      input: "{{output_dir}}/final/scene.glb"
+
 outputs:
   - "{{output_dir}}/final/scene.glb"
-  - "{{output_dir}}/terrain/heightmap.png"
+  - "{{output_dir}}/terrain/"
   - "{{output_dir}}/report.json"

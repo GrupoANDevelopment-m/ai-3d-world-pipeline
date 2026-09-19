@@ -1,8 +1,9 @@
 name: drone_to_splat
-version: 1.0.0
+version: 1.1.0
 description: >
-  Pipeline completo de reconstrução: fotos de drone → SfM → Dense MVS →
-  3D Gaussian Splatting → asset processado.
+  Pipeline completo de reconstrução: fotos de drone → SfM (COLMAP) →
+  Dense MVS → 3D Gaussian Splatting (LichtFeld) → asset processado (Blender).
+  Compressão final via SuperSplat / LichtFeld.
 
 inputs:
   photos_dir: ./input/drone_photos/
@@ -32,6 +33,14 @@ stages:
       gpu: true
       matching: exhaustive
 
+  # Alternativa AliceVision (descomente se preferir)
+  # - id: alicevision_full
+  #   tool: alicevision
+  #   params:
+  #     photos: "{{photos_dir}}"
+  #     output: "{{output_dir}}/alicevision/"
+  #     gpu: true
+
   - id: gaussian_splat
     tool: lichtfeld
     params:
@@ -42,6 +51,13 @@ stages:
       resolution: 1920x1080
       compress: ksplat
 
+  # Edição visual opcional via SuperSplat (precisa interação humana)
+  # - id: supersplat_review
+  #   tool: supersplat
+  #   params:
+  #     action: serve
+  #     port: 3000
+
   - id: mesh_extract
     tool: blender_process
     params:
@@ -50,6 +66,11 @@ stages:
       max_tris: 200000
       lod_levels: 4
       collider: trimesh
+
+  - id: validate
+    tool: gltf_validator
+    params:
+      input: "{{output_dir}}/mesh/extracted.glb"
 
 outputs:
   - "{{output_dir}}/splat/scene.ksplat"

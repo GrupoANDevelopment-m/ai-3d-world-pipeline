@@ -80,11 +80,13 @@ def decide_path(req: PipelineRequest) -> Path:
 ### Caminho A — Reconstrução
 
 ```
-[Sparse SfM] → COLMAP / Meshroom
+[Sparse SfM] → COLMAP / AliceVision (CLI) / Meshroom (GUI)
        ↓
 [Dense MVS / MDE] → COLMAP dense OR WebODM (drone georrefer.)
        ↓
 [Representação visual] → LichtFeld Studio (3D Gaussian Splatting)
+       ↓
+[Edição / Inspeção] → SuperSplat (PlayCanvas editor web)
        ↓
 [Opcional] Extração de mesh do splat (para física/colisão)
 ```
@@ -94,18 +96,38 @@ Ver detalhes em [`docs/path-a-reconstruction.md`](docs/path-a-reconstruction.md)
 ### Caminho B — Geração Procedural + AI
 
 ```
-[WorldGen] → cena base a partir de prompt/imagem
+[WorldGen ZiYang-xie] → cena base a partir de prompt/imagem
        ↓
-[Terreno] → TerraForge3D OU SimpleXTerrain/Terrain3D (Godot)
+[Terreno] → TerraForge3D OU SimpleXTerrain/Terrain3D (Godot) OU Bycob/world
        ↓
 [Objetos] → GameFactory-3A (gen_3d_scene + gen_3d_object)
        ↓
-[Geografia real] → rsgeotools (OSM) [opcional]
-       ↓
-[Vegetação/Cidades] → 3DWorld ou Bycob/world [opcional]
+[Opcional: engine clássica] → 3DWorld (fegennari) com configs específicas
 ```
 
 Ver detalhes em [`docs/path-b-procedural.md`](docs/path-b-procedural.md).
+
+### Caminho C — OSM Real (cidades e geografia reais)
+
+```
+[Tile coords OSM zoom 14] → rsgeotools-rvtgen3d
+       ↓
+[9 camadas: surface, buildings, roads, naturals, props, wires, etc.]
+       ↓
+[Opcional: terreno procedural sobreposto] → TerraForge3D
+```
+
+Ver detalhes em [`skills/osm-worldgen.md`](skills/osm-worldgen.md).
+
+### Caminho D — Voxel / Infinito
+
+```
+[Bycob/world C++] OU [Terasology Java/Gradle]
+       ↓
+[Mundo massivo voxel com LOD automático, exploração ilimitada]
+```
+
+Ver detalhes em [`skills/voxel-world.md`](skills/voxel-world.md).
 
 ---
 

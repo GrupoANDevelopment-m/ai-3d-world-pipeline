@@ -1,0 +1,39 @@
+name: voxel_infinite_world
+version: 1.0.0
+description: >
+  Pipeline voxel: gera mundo voxel infinito via Bycob/world ou Terasology.
+  Suporta terreno + vegetação + cidades + voxels.
+
+inputs:
+  engine: bycob_world          # bycob_world | terasology
+  output_dir: ./outputs/voxel_world/
+  seed: 42
+  capture_s: 600
+  features:
+    terrain: true
+    vegetation: true
+    cities: false
+    voxels: true
+
+constraints:
+  engine_target: godot4
+
+stages:
+  - id: voxel_gen
+    tool: "{{engine}}"
+    params:
+      output: "{{output_dir}}"
+      seed: "{{seed}}"
+      terrain: "{{features.terrain}}"
+      vegetation: "{{features.vegetation}}"
+      cities: "{{features.cities}}"
+      voxels: "{{features.voxels}}"
+
+  - id: validate
+    tool: gltf_validator
+    params:
+      input: "{{output_dir}}/"
+
+outputs:
+  - "{{output_dir}}"
+  - "{{output_dir}}/report.json"

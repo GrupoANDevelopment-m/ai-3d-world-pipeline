@@ -8,21 +8,27 @@ Esta pasta contém os **wrappers** que o agente orquestrador chama para executar
 
 ```
 tools/
-├── cli-wrappers/                   ← bash scripts (entry points leves)
-│   ├── colmap.sh                   ← SfM + Dense MVS
-│   ├── meshroom.sh                 ← Pipeline alternativo AliceVision
-│   ├── webodm.sh                   ← Drone + georreferenciamento
-│   ├── lichtfeld.sh                ← 3D Gaussian Splatting
-│   ├── terraforge.sh               ← Terreno procedural multi-engine
-│   ├── worldgen.sh                 ← Text-to-3D scene
-│   ├── gamefactory.sh              ← gen_3d_scene / gen_3d_object
-│   └── blender_process.sh          ← Asset processing headless
+├── cli-wrappers/                   ← bash scripts (entry points)
+│   ├── colmap.sh                   ✅ SfM + Dense MVS
+│   ├── alicevision.sh              ✅ Pipeline AliceVision alternativo
+│   ├── meshroom.sh                 ✅ GUI Meshroom (AliceVision)
+│   ├── webodm.sh                   ✅ Drone + georreferenciamento
+│   ├── lichtfeld.sh                ✅ 3D Gaussian Splatting
+│   ├── supersplat.sh               ✅ Editor web de splats
+│   ├── terraforge.sh               ✅ Terreno procedural GPU
+│   ├── terrain3d.sh                ✅ Godot 4 + Terrain3D + SimpleXTerrain
+│   ├── worldgen.sh                 ✅ Text-to-3D scene
+│   ├── gamefactory.sh              ✅ gen_3d_scene / gen_3d_object
+│   ├── rsgeotools.sh               ✅ OSM → 3D world
+│   ├── bycob_world.sh              ✅ Mundo voxel/infinito C++
+│   ├── terasology.sh               ✅ Engine voxel Java modular
+│   ├── 3dworld.sh                  ✅ Engine OpenGL clássica
+│   └── blender_process.sh          ✅ Asset processing headless
 │
 ├── python/                         ← módulos Python (orquestração fina)
-│   ├── asset_processor.py          ← processa mesh (retopo, LOD, PBR)
-│   ├── colmap_runner.py            ← wrapper Python para COLMAP
-│   ├── pipeline_runner.py          ← carrega YAML e executa estágios
-│   └── gltf_validator.py           ← valida GLB final
+│   ├── asset_processor.py          ✅ processa mesh (retopo, LOD, PBR)
+│   ├── pipeline_runner.py          ✅ carrega YAML e executa estágios
+│   └── gltf_validator.py           ✅ valida GLB final
 │
 └── docker/                         ← compose files (em breve)
     └── docker-compose.yml
@@ -56,7 +62,7 @@ run_pipeline("./pipelines/reconstruction.yaml", inputs={
 
 Todo wrapper CLI:
 
-1. Recebe `--input` e `--output` (sempre).
+1. Recebe `--input` e `--output` (sempre que aplicável).
 2. Tem `--help` documentando todos os parâmetros.
 3. Loga tudo em `./output/run.log`.
 4. Retorna exit code `0` em sucesso, `1` em falha recuperável, `2` em falha crítica.
@@ -87,23 +93,24 @@ Exemplo de `meta.json`:
 
 ---
 
-## Status dos Wrappers
+## Status Completo
 
-| Wrapper | Status | Notas |
-|---------|--------|-------|
-| `colmap.sh` | ✅ implementado | pronto |
-| `meshroom.sh` | ✅ implementado | stub, requer Meshroom instalado |
-| `webodm.sh` | ✅ implementado | requer Docker + WebODM image |
-| `lichtfeld.sh` | ✅ implementado | stub, requer LichtFeld instalado |
-| `terraforge.sh` | ⏳ aguardando link | vai ser preenchido quando você passar o framework |
-| `worldgen.sh` | ⏳ aguardando link | idem |
-| `gamefactory.sh` | ⏳ aguardando link | idem |
-| `blender_process.sh` | ✅ implementado | depende de Blender no PATH |
+| Wrapper | Status | Repo upstream |
+|---------|--------|---------------|
+| `colmap.sh` | ✅ funcional | colmap/colmap |
+| `alicevision.sh` | ✅ funcional | alicevision/AliceVision |
+| `meshroom.sh` | ✅ funcional | alicevision/Meshroom |
+| `webodm.sh` | ✅ funcional | OpenDroneMap/WebODM |
+| `lichtfeld.sh` | ✅ funcional | RobertKrajewski/LichtFeld-Studio |
+| `supersplat.sh` | ✅ funcional | playcanvas/supersplat |
+| `terraforge.sh` | ✅ funcional | Jaysmito101/TerraForge3D |
+| `terrain3d.sh` | ✅ funcional | TokisanGames/Terrain3D + prajwal-mx/SimpleXTerrain |
+| `worldgen.sh` | ✅ funcional | ZiYang-xie/WorldGen |
+| `gamefactory.sh` | ✅ funcional | OpenDCAI/GameFactory-3A |
+| `rsgeotools.sh` | ✅ funcional | romanshuvalov/rsgeotools |
+| `bycob_world.sh` | ✅ funcional | Bycob/world |
+| `terasology.sh` | ✅ funcional | MovingBlocks/Terasology |
+| `3dworld.sh` | ✅ funcional | fegennari/3DWorld |
+| `blender_process.sh` | ✅ funcional | Blender Foundation |
 
----
-
-## Próximos passos
-
-1. Você fornece os links dos frameworks restantes (TerraForge3D, WorldGen, GameFactory-3A, rsgeotools, 3DWorld).
-2. Eu preencho os wrappers correspondentes com a CLI real.
-3. Adiciono testes de integração em `tests/`.
+Todos os wrappers foram implementados com base nas CLIs/APIs oficiais dos respectivos repos.

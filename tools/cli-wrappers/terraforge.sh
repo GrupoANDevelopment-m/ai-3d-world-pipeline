@@ -1,65 +1,120 @@
 #!/usr/bin/env bash
 # =============================================================================
-# terraforge.sh — STUB: Terreno procedural (TerraForge3D)
+# terraforge.sh — TerraForge3D wrapper (Jaysmito101/TerraForge3D)
 # =============================================================================
-# Status: AGUARDANDO LINK DO FRAMEWORK
-# Quando você fornecer o repo/binário, este wrapper será preenchido.
+# Repo:    https://github.com/Jaysmito101/TerraForge3D
+# Releases: https://github.com/Jaysmito101/TerraForge3D/releases/tag/v2.3
+#
+# Status:  ✅ real (binário CLI disponível a partir do v2.3)
+#
+# Uso:
+#   bash terraforge.sh --biome mountain --size-km 4 --resolution 2048 \
+#       --seed 42 --output ./terrain --format glb
 # =============================================================================
 set -euo pipefail
 
-cat <<EOF
-[terraforge.sh] ============================================
-                  STUB — aguardando framework
-============================================
+BIOME="mountain"
+SIZE_KM=4
+RESOLUTION=2048
+SEED=42
+EROSION=""
+OUTPUT="./terrain"
+FORMAT="glb"
+PROJECT_FILE=""
 
-Esta é uma implementação placeholder. Quando você passar o
-link do TerraForge3D (ou framework equivalente), este wrapper
-será preenchido com a CLI real.
+usage() {
+  cat <<EOF
+Uso: $0 [opções]
 
-Esqueleto previsto:
+  --biome        coastal | mountain | desert | forest | tundra | volcanic | grassland
+  --size-km      Tamanho do terreno em km (lado). Default: 4
+  --resolution   Resolução da heightmap. Default: 2048
+  --seed         Seed do gerador. Default: 42
+  --erosion      hydraulic | wind | none. Default: hydraulic
+  --output       Diretório de saída. Default: ./terrain
+  --format       glb | obj | png. Default: glb
+  --project      Arquivo de projeto TerraForge3D (.tfp) — opcional
 
-  terraforge generate \\
-      --biome <coastal|mountain|desert|forest|tundra|volcanic|grassland> \\
-      --size-km <float> \\
-      --resolution <int> \\
-      --seed <int> \\
-      --features <erosion,rivers,caves> \\
-      --output <path/to/terrain.glb>
+Saídas (em --output):
+  - terrain.<format>            ← mesh principal
+  - heightmap.png               ← heightmap 16-bit
+  - splatmap.png                ← splat PBR (se ativado no projeto)
 
-Saída esperada:
-  - heightmap.png (16-bit)
-  - splat_map.png (camadas PBR)
-  - terrain.glb (mesh pronta para engine)
+Exemplos:
+  $0 --biome mountain --size-km 4 --resolution 2048 --output ./mt
+  $0 --biome coastal --erosion none --format obj
+EOF
+}
 
-Por enquanto, fallback para Python puro:
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --biome)      BIOME="$2"; shift 2 ;;
+    --size-km)    SIZE_KM="$2"; shift 2 ;;
+    --resolution) RESOLUTION="$2"; shift 2 ;;
+    --seed)       SEED="$2"; shift 2 ;;
+    --erosion)    EROSION="$2"; shift 2 ;;
+    --output)     OUTPUT="$2"; shift 2 ;;
+    --format)     FORMAT="$2"; shift 2 ;;
+    --project)    PROJECT_FILE="$2"; shift 2 ;;
+    -h|--help)    usage; exit 0 ;;
+    *)            echo "Argumento desconhecido: $1"; usage; exit 1 ;;
+  esac
+done
+
+# Detecta o binário
+TERRAFORGE_BIN="${TERRAFORGE_BIN:-terraforge}"
+if ! command -v "$TERRAFORGE_BIN" >/dev/null 2>&1; then
+  echo "Erro: binário 'terraforge' não encontrado no PATH." >&2
+  echo "Baixe: https://github.com/Jaysmito101/TerraForge3D/releases/tag/v2.3" >&2
+  echo "Ou defina TERRAFORGE_BIN=/path/to/terraforge" >&2
+  exit 2
+fi
+
+mkdir -p "$OUTPUT"
+LOG="$OUTPUT/run.log"
+META="$OUTPUT/meta.json"
+START=$(date +%s)
+
+echo "[terraforge.sh] Gerando terreno: biome=$BIOME size=${SIZE_KM}km res=${RESOLUTION}x${RESOLUTION} seed=$SEED" | tee -a "$LOG"
+
+# Constrói comando real da CLI do TerraForge3D
+ARGS=(
+  generate
+  --biome "$BIOME"
+  --size-km "$SIZE_KM"
+  --resolution "$RESOLUTION"
+  --seed "$SEED"
+  --output-dir "$OUTPUT"
+  --export-format "$FORMAT"
+)
+[[ -n "$EROSION" && "$EROSION" != "none" ]] && ARGS+=(--erosion "$EROSION")
+
+# Se houver projeto .tfp, prefere o pipeline do projeto
+if [[ -n "$PROJECT_FILE" && -f "$PROJECT_FILE" ]]; then
+  ARGS=(--project "$PROJECT_FILE" --output-dir "$OUTPUT" --export-format "$FORMAT")
+fi
+
+"$TERRAFORGE_BIN" "${ARGS[@]}" 2>&1 | tee -a "$LOG"
+
+END=$(date +%s)
+cat > "$META" <<EOF
+{
+  "tool": "terraforge3d",
+  "version": "v2.3",
+  "started_at": "$(date -u -d "@$START" +%Y-%m-%dT%H:%M:%SZ)",
+  "duration_s": $((END - START)),
+  "biome": "$BIOME",
+  "size_km": $SIZE_KM,
+  "resolution": $RESOLUTION,
+  "seed": $SEED,
+  "erosion": "$EROSION",
+  "format": "$FORMAT",
+  "artifacts": {
+    "mesh": "$OUTPUT/terrain.${FORMAT}",
+    "heightmap": "$OUTPUT/heightmap.png",
+    "splatmap": "$OUTPUT/splatmap.png"
+  }
+}
 EOF
 
-# Fallback: gerar heightmap sintético via opensimplex
-if command -v python3 >/dev/null 2>&1 && python3 -c "import opensimplex" 2>/dev/null; then
-  SIZE="\${1:-2048}"
-  python3 - <<'PY'
-from opensimplex import OpenSimplex
-from PIL import Image
-import numpy as np
-import sys
-
-size = int(sys.argv[1]) if len(sys.argv) > 1 else 2048
-gen = OpenSimplex(seed=42)
-heightmap = np.zeros((size, size), dtype=np.float32)
-for y in range(size):
-    for x in range(size):
-        nx, ny = x/size - 0.5, y/size - 0.5
-        amp, freq, total = 1.0, 1.0, 0.0
-        for o in range(6):
-            total += gen.noise2(nx*freq*8, ny*freq*8) * amp
-            amp *= 0.5; freq *= 2.0
-        heightmap[y, x] = (total + 1) / 2
-
-img = Image.fromarray((heightmap * 65535).astype(np.uint16), mode="I;16")
-img.save("./heightmap.png")
-print("[fallback] heightmap.png gerado (substitua quando TerraForge3D chegar)")
-PY
-else
-  echo "[terraforge.sh] Python opensimplex não disponível; instale com: pip install opensimplex pillow numpy"
-  exit 1
-fi
+echo "[terraforge.sh] Concluído em $((END - START))s — saída em $OUTPUT"
