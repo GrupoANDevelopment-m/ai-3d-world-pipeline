@@ -1,0 +1,90 @@
+name: digital_twin_hybrid
+version: 1.0.0
+description: >
+  Pipeline híbrido: usa dados reais (drone) para a estrutura principal
+  (fábrica / prédio) e geração procedural para o terreno ao redor.
+
+inputs:
+  photos_dir: ./input/drone_factory/
+  terrain_prompt: "Terreno montanhoso de 1 km² ao redor da fábrica"
+  output_dir: ./outputs/factory_digital_twin/
+
+constraints:
+  engine_target: godot4
+  max_polycount: 700000
+  target_fps: 60
+  geographic_accuracy_cm: 10
+
+stages:
+  # ----- Caminho A: estrutura principal -----
+  - id: factory_sfm
+    tool: colmap
+    params:
+      photos: "{{photos_dir}}"
+      output: "{{output_dir}}/factory/colmap/"
+      type: dense
+      gpu: true
+      matching: exhaustive
+
+  - id: factory_splat
+    tool: lichtfeld
+    params:
+      photos: "{{photos_dir}}"
+      output: "{{output_dir}}/factory/splat/"
+      iter: 30000
+      sh: 3
+      compress: ksplat
+
+  # ----- Caminho B: terreno procedural ao redor -----
+  - id: terrain_procedural
+    tool: terraforge
+    params:
+      biome: mountain
+      size_km: 1
+      resolution: 2048
+      seed: 17
+      features: erosion
+      output: "{{output_dir}}/terrain/terrain.glb"
+
+  - id: vegetation_scatter
+    tool: gamefactory
+    params:
+      prompt: "{{terrain_prompt}}"
+      density: medium
+      biome: temperate
+      bounds: "0,0,1000,1000"
+      output: "{{output_dir}}/vegetation/"
+
+  # ----- Asset processing final -----
+  - id: process_factory_mesh
+    tool: blender_process
+    params:
+      input: "{{output_dir}}/factory/colmap/dense/fused.ply"
+      output: "{{output_dir}}/final/factory.glb"
+      max_tris: 200000
+      lod_levels: 4
+      collider: trimesh
+
+  - id: process_terrain_mesh
+    tool: blender_process
+    params:
+      input: "{{output_dir}}/terrain/terrain.glb"
+      output: "{{output_dir}}/final/terrain.glb"
+      max_tris: 500000
+      lod_levels: 2
+      collider: trimesh
+
+  # ----- Assembly final no Godot -----
+  - id: godot_scene_assembly
+    tool: godot_adapter
+    params:
+      splat: "{{output_dir}}/factory/splat/scene.ksplat"
+      factory_mesh: "{{output_dir}}/final/factory.glb"
+      terrain_mesh: "{{output_dir}}/final/terrain.glb"
+      vegetation_dir: "{{output_dir}}/vegetation/"
+      output: "{{output_dir}}/scene.godot/"
+
+outputs:
+  - "{{output_dir}}/scene.godot/"
+  - "{{output_dir}}/factory/splat/scene.ksplat"
+  - "{{output_dir}}/report.json"

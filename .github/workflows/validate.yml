@@ -1,0 +1,67 @@
+name: Validate Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate pipeline definitions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Validate YAML pipelines
+        run: |
+          python -c "
+          import yaml, sys, glob
+          for path in glob.glob('pipelines/*.yaml'):
+              print(f'Validating {path}...')
+              with open(path) as f:
+                  spec = yaml.safe_load(f)
+              assert 'name' in spec, f'Missing name in {path}'
+              assert 'stages' in spec, f'Missing stages in {path}'
+              assert len(spec['stages']) > 0, f'Empty stages in {path}'
+              for stage in spec['stages']:
+                  assert 'id' in stage, f'Stage sem id em {path}'
+                  assert 'tool' in stage, f'Stage {stage.get(\"id\")} sem tool em {path}'
+              print(f'  ✓ {spec[\"name\"]} v{spec.get(\"version\", \"?\")} — {len(spec[\"stages\"])} estágios')
+          print('All YAMLs valid.')
+          "
+
+      - name: Lint shell wrappers
+        run: |
+          for f in tools/cli-wrappers/*.sh; do
+            echo "Bash -n $f"
+            bash -n "$f"
+          done
+
+      - name: Lint Python modules
+        run: |
+          python -m py_compile tools/python/*.py && echo "✓ Python modules compile"
+
+      - name: Validate skill files have front-matter
+        run: |
+          for f in skills/*.md; do
+            head -1 "$f" | grep -q '^---$' || { echo "✗ $f sem front-matter"; exit 1; }
+            echo "✓ $f"
+          done
+
+      - name: Verify README links are present
+        run: |
+          grep -q 'docs/path-a-reconstruction.md' README.md && echo "✓ link A"
+          grep -q 'docs/path-b-procedural.md' README.md && echo "✓ link B"
+          grep -q 'skills/orchestrator.md' README.md && echo "✓ skill orchestrator"

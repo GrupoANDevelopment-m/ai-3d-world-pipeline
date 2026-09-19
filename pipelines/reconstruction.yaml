@@ -1,0 +1,57 @@
+name: drone_to_splat
+version: 1.0.0
+description: >
+  Pipeline completo de reconstrução: fotos de drone → SfM → Dense MVS →
+  3D Gaussian Splatting → asset processado.
+
+inputs:
+  photos_dir: ./input/drone_photos/
+  output_dir: ./outputs/factory_splat/
+
+constraints:
+  engine_target: godot4
+  max_polycount: 200000
+  target_fps: 60
+
+stages:
+  - id: sfm_sparse
+    tool: colmap
+    params:
+      photos: "{{photos_dir}}"
+      output: "{{output_dir}}/colmap/"
+      type: sparse
+      gpu: true
+      matching: exhaustive
+
+  - id: dense_mvs
+    tool: colmap
+    params:
+      photos: "{{photos_dir}}"
+      output: "{{output_dir}}/colmap/"
+      type: dense
+      gpu: true
+      matching: exhaustive
+
+  - id: gaussian_splat
+    tool: lichtfeld
+    params:
+      photos: "{{photos_dir}}"
+      output: "{{output_dir}}/splat/"
+      iter: 30000
+      sh: 3
+      resolution: 1920x1080
+      compress: ksplat
+
+  - id: mesh_extract
+    tool: blender_process
+    params:
+      input: "{{output_dir}}/splat/scene.ply"
+      output: "{{output_dir}}/mesh/extracted.glb"
+      max_tris: 200000
+      lod_levels: 4
+      collider: trimesh
+
+outputs:
+  - "{{output_dir}}/splat/scene.ksplat"
+  - "{{output_dir}}/mesh/extracted.glb"
+  - "{{output_dir}}/report.json"

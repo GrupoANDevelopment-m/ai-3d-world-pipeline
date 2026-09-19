@@ -1,0 +1,60 @@
+name: text_to_world
+version: 1.0.0
+description: >
+  Pipeline procedural completo: prompt → cena base WorldGen → terreno
+  procedural → objetos via GameFactory → montagem final.
+
+inputs:
+  prompt: "Vila costeira portuguesa com falésias e farol ao entardecer"
+  biome: coastal
+  size_km: 4
+  resolution: 2048
+  output_dir: ./outputs/coastal_village/
+
+constraints:
+  engine_target: godot4
+  max_polycount: 500000
+  target_fps: 60
+
+stages:
+  - id: worldgen_base
+    tool: worldgen
+    params:
+      prompt: "{{prompt}}"
+      style: realistic
+      seed: 42
+      output: "{{output_dir}}/base_scene/scene.glb"
+
+  - id: terrain_procedural
+    tool: terraforge
+    params:
+      biome: "{{biome}}"
+      size_km: "{{size_km}}"
+      resolution: "{{resolution}}"
+      seed: 42
+      features: erosion,rivers
+      output: "{{output_dir}}/terrain/terrain.glb"
+      heightmap: "{{output_dir}}/terrain/heightmap.png"
+
+  - id: vegetation_scatter
+    tool: gamefactory
+    params:
+      prompt: "{{prompt}}"
+      density: medium
+      biome: "{{biome}}"
+      bounds: "0,0,4000,4000"
+      output: "{{output_dir}}/vegetation/"
+
+  - id: assembly
+    tool: blender_process
+    params:
+      input: "{{output_dir}}/base_scene/scene.glb"
+      output: "{{output_dir}}/final/scene.glb"
+      max_tris: 500000
+      lod_levels: 3
+      collider: trimesh
+
+outputs:
+  - "{{output_dir}}/final/scene.glb"
+  - "{{output_dir}}/terrain/heightmap.png"
+  - "{{output_dir}}/report.json"
