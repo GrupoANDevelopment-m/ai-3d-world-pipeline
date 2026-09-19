@@ -84,25 +84,35 @@ LOG="$OUTPUT/run.log"
 META="$OUTPUT/meta.json"
 START=$(date +%s)
 
-cd "$BUILD_DIR"
+# NÃO cd no build dir: os binários do bycob criam assets/ no CWD, e o `tee` no
+# log precisa de path absoluto. Em vez disso, prefixa binários com $BUILD_DIR.
+TERRAIN_BIN="$BUILD_DIR/bin/test_terrain"
+TREE_BIN="$BUILD_DIR/bin/test_tree"
+MAPPER_BIN="$BUILD_DIR/bin/mapper"
 
 if [[ $TERRAIN -eq 1 ]]; then
   echo "[bycob_world] Gerando terrain (test_terrain)..." | tee -a "$LOG"
-  ./bin/test_terrain 2>&1 | tee -a "$LOG"
-  # Copia outputs
-  cp -v assets/terrain/terrain.obj assets/terrain/terrain.png assets/terrain/test2_*.png "$OUTPUT/" 2>/dev/null || true
+  # Bycob gera outputs em assets/ relativo ao cwd → fazemos em /tmp/bycob_<pid>/ e copiamos
+  WORK_DIR="$(mktemp -d -t bycob.XXXXXX)"
+  (cd "$WORK_DIR" && "$TERRAIN_BIN" 2>&1) | tee -a "$LOG"
+  cp -v "$WORK_DIR/assets/terrain/terrain.obj" "$WORK_DIR/assets/terrain/terrain.png" "$WORK_DIR/assets/terrain/test2_"*.png "$OUTPUT/" 2>/dev/null || true
+  rm -rf "$WORK_DIR"
 fi
 
 if [[ $VEGETATION -eq 1 ]]; then
   echo "[bycob_world] Gerando trees (test_tree)..." | tee -a "$LOG"
-  ./bin/test_tree 2>&1 | tee -a "$LOG"
-  cp -rv assets/tree "$OUTPUT/" 2>/dev/null || true
+  WORK_DIR="$(mktemp -d -t bycob.XXXXXX)"
+  (cd "$WORK_DIR" && "$TREE_BIN" 2>&1) | tee -a "$LOG"
+  cp -rv "$WORK_DIR/assets/tree" "$OUTPUT/" 2>/dev/null || true
+  rm -rf "$WORK_DIR"
 fi
 
 if [[ "$TEST_TYPE" == "mapper" ]]; then
   echo "[bycob_world] Gerando mapa 2D (mapper)..." | tee -a "$LOG"
-  ./bin/mapper 2>&1 | tee -a "$LOG" || true  # pode crashar em exportZones
-  cp -v map.png "$OUTPUT/" 2>/dev/null || true
+  WORK_DIR="$(mktemp -d -t bycob.XXXXXX)"
+  (cd "$WORK_DIR" && "$MAPPER_BIN" 2>&1) | tee -a "$LOG" || true
+  cp -v "$WORK_DIR/map.png" "$OUTPUT/" 2>/dev/null || true
+  rm -rf "$WORK_DIR"
 fi
 
 END=$(date +%s)
