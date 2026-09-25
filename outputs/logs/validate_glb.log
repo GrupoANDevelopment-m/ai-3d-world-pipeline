@@ -1,0 +1,13 @@
+{
+  "valid": true,
+  "file": "outputs/gateway_test3/final/terrain.glb",
+  "size_bytes": 4264412,
+  "polycount": 0,
+  "meshes": 3,
+  "materials": 1,
+  "textures": 0,
+  "animations": 0,
+  "warnings": []
+}
+
+--- STDERR ---

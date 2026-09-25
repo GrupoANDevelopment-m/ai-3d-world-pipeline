@@ -1,0 +1,49 @@
+{
+  "pipeline": "with_gpu_stage",
+  "version": "1.0.0",
+  "stages": [
+    {
+      "stage": "terrain_cpu",
+      "tool": "bycob_world",
+      "kind": "sh",
+      "params": {
+        "output": "./outputs/gpu_gate_test2//terrain/",
+        "terrain": true,
+        "vegetation": true,
+        "source": "/opt/tools/world"
+      },
+      "log": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs/logs/terrain_cpu.log"
+    },
+    {
+      "stage": "splat_gpu",
+      "tool": "lichtfeld",
+      "kind": "sh",
+      "params": {
+        "photos": "./dummy/",
+        "output": "./outputs/gpu_gate_test2//splat/",
+        "iter": 30000,
+        "sh": 3,
+        "compress": "ksplat"
+      },
+      "log": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs/logs/splat_gpu.log",
+      "status": "skipped"
+    },
+    {
+      "stage": "validate",
+      "tool": "bycob_world",
+      "kind": "sh",
+      "params": {
+        "output": "./outputs/gpu_gate_test2//terrain/",
+        "test": "terrain",
+        "source": "/opt/tools/world"
+      },
+      "log": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs/logs/validate.log"
+    }
+  ],
+  "context": {
+    "photos_dir": "./dummy/",
+    "output_dir": "./outputs/gpu_gate_test2/",
+    "output_root": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs",
+    "repo_root": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline"
+  }
+}

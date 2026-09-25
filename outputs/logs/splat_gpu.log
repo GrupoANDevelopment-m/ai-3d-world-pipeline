@@ -1,0 +1,18 @@
+{
+  "stage": "lichtfeld",
+  "gpu_check": "skip",
+  "reason": "GPU ausente. LichtFeld Studio 3DGS training \u2014 100% CUDA. CPU mode inexistente. Para rodar este stage, instale CUDA Toolkit + driver NVIDIA, ou remova este stage do pipeline."
+}
+
+--- STDERR ---
+[lichtfeld.sh] Verificando gate de GPU...
+
+[lichtfeld.sh] ══════════════════════════════════════════════════════════
+[lichtfeld.sh] SKIP: LichtFeld 3DGS training requer GPU NVIDIA/CUDA.
+[lichtfeld.sh] ══════════════════════════════════════════════════════════
+[lichtfeld.sh] Alternativas para ambiente CPU-only:
+[lichtfeld.sh]   1. OpenSplat (C++ libtorch CPU, 100x mais lento)
+[lichtfeld.sh]   2. 3dgs-warp-scratch (Python, NVIDIA Warp CPU)
+[lichtfeld.sh]   3. Gaussian-LiteSplat (Python puro, Google Colab)
+[lichtfeld.sh]   4. Aguardar hardware com GPU
+[lichtfeld.sh] ══════════════════════════════════════════════════════════

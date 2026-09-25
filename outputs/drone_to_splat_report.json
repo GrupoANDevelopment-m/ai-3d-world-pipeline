@@ -1,0 +1,11 @@
+{
+  "pipeline": "drone_to_splat",
+  "version": "1.1.0",
+  "stages": [],
+  "context": {
+    "photos_dir": "/workspace/dummy_photos/",
+    "output_dir": "/workspace/ai-3d-world-pipeline/outputs/bycob_test/",
+    "output_root": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs",
+    "repo_root": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline"
+  }
+}

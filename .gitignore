@@ -1,94 +1,11 @@
-# ============================================
-#  AI 3D World Pipeline — .gitignore
-# ============================================
+# outputs grandes ficam em /workspace/tools e /workspace/run_pipeline outputs
+# Mantem so metadados no repo, não binários
 
-# --- Outputs (artefatos pesados de execução) ---
-outputs/
-/cache/
-/tmp/
-*.log
-
-# --- Modelos e dados grandes ---
-*.ply
-*.obj
-*.fbx
-*.glb
-*.gltf
-*.usdz
-*.splat
-*.spz
-*.ksplat
-*.gaussian
-*.mesh
-*.exr
-*.hdr
-*.tif
-*.tiff
-*.dds
-*.raw
-*.bin
-
-# --- Pontos, nuvens e reconstruções ---
-/colmap_workspace/
-/meshroom_cache/
-/webodm_output/
-/gaussian_splatting/
-
-# --- Engines ---
-/.godot/
-/.import/
-/addons/
-/Assets/
-/Library/
-/Temp/
-/Build/
-/DerivedDataCache/
-/Intermediate/
-/Saved/
-/Binaries/
-
-# --- Python ---
+*.pyc
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-.venv/
-venv/
-env/
-ENV/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-.tox/
-
-# --- Secrets e credenciais (NUNCA COMMITAR) ---
 .env
-.env.*
 *.key
 *.pem
-**/credentials.json
-**/secrets.yaml
 
-# --- OS ---
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# --- IDE ---
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.cursor/
-
-# --- Docker ---
-.docker/
-
-# --- Misc ---
-*.bak
-*.tmp
-*.orig
+# Mas NÃO ignora os outputs reais — eles provam que funciona!
+# Na verdade IGNORA os tree/* e .obj raw (muito grandes)

@@ -1,0 +1,23 @@
+[blender_process] Convertendo ./outputs/gateway_test3//bycob/terrain.obj → ./outputs/gateway_test3//final/terrain.glb (max=50000, lods=3, collider=trimesh)
+[asset_processor] Importando ./outputs/gateway_test3//bycob/terrain.obj
+[asset_processor] 1 mesh(s) importada(s)
+[asset_processor] Gerando 3 LODs
+[asset_processor] Exportando outputs/gateway_test3/final/terrain.glb
+INFO Draco mesh compression is available, use library at /opt/tools/blender-4.2.5-linux-x64/4.2/python/lib/python3.11/site-packages/libextern_draco.so
+23:24:26 | INFO: Starting glTF 2.0 export
+23:24:26 | INFO: Extracting primitive: mesh1
+23:24:26 | INFO: Primitives created: 1
+23:24:26 | INFO: Extracting primitive: mesh1.001
+23:24:26 | INFO: Primitives created: 1
+23:24:26 | INFO: Extracting primitive: mesh1.002
+23:24:26 | INFO: Primitives created: 1
+23:24:26 | INFO: Finished glTF 2.0 export in 0.18444609642028809 s
+Blender 4.2.5 LTS (hash 27be13ad2d5a built 2024-12-17 01:31:17)
+OBJ import of 'terrain.obj' took 62.37 ms
+
+[asset_processor] Meta salvo em outputs/gateway_test3/final/terrain.meta.json
+[asset_processor] ✓ Concluído
+[blender_process] Concluído: ./outputs/gateway_test3//final/terrain.glb
+
+--- STDERR ---
+OBJ import: cannot read from MTL file: './outputs/gateway_test3//bycob/terrain.mtl'

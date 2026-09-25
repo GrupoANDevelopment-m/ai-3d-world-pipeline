@@ -1,0 +1,49 @@
+{
+  "pipeline": "verified_real_pipeline",
+  "version": "1.0.0",
+  "stages": [
+    {
+      "stage": "bycob_terrain",
+      "tool": "bycob_world",
+      "kind": "sh",
+      "params": {
+        "output": "./outputs/gateway_test3//bycob/",
+        "terrain": true,
+        "vegetation": true,
+        "test": "terrain",
+        "source": "/opt/tools/world"
+      },
+      "log": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs/logs/bycob_terrain.log"
+    },
+    {
+      "stage": "blender_convert",
+      "tool": "blender_process",
+      "kind": "sh",
+      "params": {
+        "input": "./outputs/gateway_test3//bycob/terrain.obj",
+        "output": "./outputs/gateway_test3//final/terrain.glb",
+        "max_tris": "50000",
+        "lod_levels": "3",
+        "collider": "trimesh",
+        "blender": "/opt/tools/blender-4.2.5-linux-x64/blender"
+      },
+      "log": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs/logs/blender_convert.log"
+    },
+    {
+      "stage": "validate_glb",
+      "tool": "gltf_validator",
+      "kind": "py",
+      "params": {
+        "input": "./outputs/gateway_test3//final/terrain.glb"
+      },
+      "log": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs/logs/validate_glb.log"
+    }
+  ],
+  "context": {
+    "output_dir": "./outputs/gateway_test3/",
+    "blender_max_tris": "50000",
+    "blender_lod_levels": "3",
+    "output_root": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline/outputs",
+    "repo_root": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/ai-3d-world-pipeline"
+  }
+}
