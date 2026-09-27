@@ -5,13 +5,13 @@
 # Repo: https://github.com/Bycob/world
 #
 # VERIFICADO:
-#   - Clonado e compilado em /opt/tools/world
+#   - Clonado e compilado em /workspace/tools/world
 #   - libworld.so + libpeace.so + libzlib.a + liblibpng.a gerados
 #   - binários test_ini_files, test_terrain, test_tree, test_reliefmap, mapper
 #     funcionam e geram assets reais (terrain.obj + texturas + trees.obj)
 #
 # Build (uma vez):
-#   cd /opt/tools/world && mkdir build && cd build
+#   cd /workspace/tools/world && mkdir build && cd build
 #   cmake .. -DCMAKE_BUILD_TYPE=Release && make -j2
 #
 # Status: ✅ funcional
@@ -22,7 +22,7 @@
 set -euo pipefail
 
 OUTPUT="./bycob_out"
-SOURCE_DIR="${BYCOB_WORLD_DIR:-/opt/tools/world}"
+SOURCE_DIR="${BYCOB_WORLD_DIR:-/workspace/tools/world}"
 BUILD_DIR="$SOURCE_DIR/build"
 TERRAIN=1
 VEGETATION=1
@@ -42,7 +42,7 @@ Uso: $0 --output <dir> [opções]
   --voxels         Inclui voxel (em breve)
   --seed           Seed. Default: 42
   --test           terrain | tree | mapper. Default: terrain
-  --source         Caminho do repo Bycob/world. Default: /opt/tools/world
+  --source         Caminho do repo Bycob/world. Default: /workspace/tools/world
 
 Saídas (no diretório --output):
   - terrain.obj + terrain.png + terrain.mtl

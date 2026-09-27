@@ -79,7 +79,7 @@ def cmd_doctor(args):
 
     # Blender (se instalado)
     blender_paths = [
-        "/opt/tools/blender-4.2.5-linux-x64/blender",
+        "/workspace/tools/blender-4.2.5-linux-x64/blender",
         "/usr/local/bin/blender",
         "/usr/bin/blender",
     ]
@@ -88,18 +88,18 @@ def cmd_doctor(args):
     checks.append(("blender", blender is not None, blender_v))
 
     # Godot
-    godot_paths = ["/opt/tools/Godot_v4.3-stable_linux.x86_64", "/usr/local/bin/godot"]
+    godot_paths = ["/workspace/tools/Godot_v4.3-stable_linux.x86_64", "/usr/local/bin/godot"]
     godot = next((p for p in godot_paths if Path(p).exists()), None)
     godot_v = subprocess.run([godot, "--version"], capture_output=True, text=True).stdout.strip() if godot else ""
     checks.append(("godot", godot is not None, godot_v))
 
     # Bycob
-    bycob = Path("/opt/tools/world/build/bin")
+    bycob = Path("/workspace/tools/world/build/bin")
     checks.append(("bycob_world (C++ build)", bycob.exists() and (bycob / "test_terrain").exists(),
                    f"binários: {len(list(bycob.glob('*'))) if bycob.exists() else 0}" if bycob.exists() else ""))
 
     # Colibri reference
-    colibri = Path("/opt/tools/colibri/c/colibri")
+    colibri = Path("/workspace/tools/colibri/c/colibri")
     checks.append(("colibri (reference)", colibri.exists(), "v1.11.0 binary" if colibri.exists() else ""))
 
     # Python deps

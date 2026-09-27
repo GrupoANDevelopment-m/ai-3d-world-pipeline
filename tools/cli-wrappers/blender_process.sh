@@ -3,7 +3,7 @@
 # blender_process.sh — Asset processing headless via Blender (REAL)
 # =============================================================================
 # VERIFICADO em 2026-09-19:
-#   - Blender 4.2.5 LTS instalado em /opt/tools/blender-4.2.5-linux-x64/
+#   - Blender 4.2.5 LTS instalado em /workspace/tools/blender-4.2.5-linux-x64/
 #   - Converteu terrain.obj (de Bycob) em GLB com 3 LODs (4.2 MB)
 #   - asset_processor.py funciona end-to-end
 #
@@ -20,7 +20,7 @@ OUTPUT=""
 MAX_TRIS=200000
 LOD_LEVELS=4
 COLLIDER="trimesh"
-BLENDER_BIN="${BLENDER_BIN:-/opt/tools/blender-4.2.5-linux-x64/blender}"
+BLENDER_BIN="${BLENDER_BIN:-/workspace/tools/blender-4.2.5-linux-x64/blender}"
 SCRIPT_DIR="$(cd "$(dirname "$0")/../python" && pwd)"
 
 usage() {
@@ -32,7 +32,7 @@ Uso: $0 --input <mesh> --output <mesh> [opções]
   --max-tris     Polycount máximo. Default: 200000
   --lod-levels   Quantidade de LODs. Default: 4
   --collider     Tipo de collider: trimesh | convex | box | capsule. Default: trimesh
-  --blender      Caminho do Blender. Default: /opt/tools/blender-4.2.5-linux-x64/blender
+  --blender      Caminho do Blender. Default: /workspace/tools/blender-4.2.5-linux-x64/blender
 
 Exemplos:
   $0 --input factory.glb --output factory_processed.glb --max-tris 100000 --lod-levels 4
