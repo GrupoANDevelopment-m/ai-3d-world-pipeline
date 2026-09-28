@@ -1,0 +1,8 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1790616099
+::res://assets/::1790616108
+world.glb::PackedScene::7730660996434007166::1790616098::1790616108::1::::<><>::
+::res://scenes/::1790616099
+main.tscn::PackedScene::-1::1790616133::0::1::::<><>::res://assets/world.glb<>res://scripts/player.gd
+::res://scripts/::1790616099
+player.gd::GDScript::-1::1790616133::0::1::::<>CharacterBody3D<>::
