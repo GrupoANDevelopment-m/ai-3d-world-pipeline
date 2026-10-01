@@ -1,0 +1,20 @@
+{
+  "tool": "bycob_world",
+  "version": "main",
+  "started_at": "2026-10-01T23:52:48Z",
+  "duration_s": 9,
+  "seed": 42,
+  "binary_path": "/workspace/tools/world/build/bin/",
+  "features": {
+    "terrain": true,
+    "vegetation": true,
+    "cities": false,
+    "voxels": false
+  },
+  "output": "{{output_dir}}/bycob/",
+  "artifacts": {
+    "terrain_obj": "{{output_dir}}/bycob//terrain.obj",
+    "terrain_png": "{{output_dir}}/bycob//terrain.png",
+    "trees": "{{output_dir}}/bycob//tree/"
+  }
+}

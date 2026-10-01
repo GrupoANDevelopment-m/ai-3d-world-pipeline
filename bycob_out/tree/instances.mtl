@@ -1,0 +1,600 @@
+
+newmtl 0/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_0_leaves.png
+
+newmtl 0/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_0_trunk.png
+
+newmtl 0/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_1_leaves.png
+
+newmtl 0/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_1_trunk.png
+
+newmtl 0/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_2_leaves.png
+
+newmtl 0/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_2_trunk.png
+
+newmtl 0/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_3_leaves.png
+
+newmtl 0/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_3_trunk.png
+
+newmtl 0/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_4_leaves.png
+
+newmtl 0/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 0_4_trunk.png
+
+newmtl 1/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_0_leaves.png
+
+newmtl 1/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_0_trunk.png
+
+newmtl 1/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_1_leaves.png
+
+newmtl 1/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_1_trunk.png
+
+newmtl 1/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_2_leaves.png
+
+newmtl 1/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_2_trunk.png
+
+newmtl 1/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_3_leaves.png
+
+newmtl 1/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_3_trunk.png
+
+newmtl 1/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_4_leaves.png
+
+newmtl 1/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 1_4_trunk.png
+
+newmtl 2/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_0_leaves.png
+
+newmtl 2/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_0_trunk.png
+
+newmtl 2/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_1_leaves.png
+
+newmtl 2/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_1_trunk.png
+
+newmtl 2/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_2_leaves.png
+
+newmtl 2/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_2_trunk.png
+
+newmtl 2/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_3_leaves.png
+
+newmtl 2/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_3_trunk.png
+
+newmtl 2/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_4_leaves.png
+
+newmtl 2/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 2_4_trunk.png
+
+newmtl 3/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_0_leaves.png
+
+newmtl 3/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_0_trunk.png
+
+newmtl 3/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_1_leaves.png
+
+newmtl 3/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_1_trunk.png
+
+newmtl 3/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_2_leaves.png
+
+newmtl 3/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_2_trunk.png
+
+newmtl 3/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_3_leaves.png
+
+newmtl 3/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_3_trunk.png
+
+newmtl 3/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_4_leaves.png
+
+newmtl 3/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 3_4_trunk.png
+
+newmtl 4/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_0_leaves.png
+
+newmtl 4/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_0_trunk.png
+
+newmtl 4/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_1_leaves.png
+
+newmtl 4/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_1_trunk.png
+
+newmtl 4/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_2_leaves.png
+
+newmtl 4/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_2_trunk.png
+
+newmtl 4/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_3_leaves.png
+
+newmtl 4/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_3_trunk.png
+
+newmtl 4/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_4_leaves.png
+
+newmtl 4/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 4_4_trunk.png
+
+newmtl 5/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_0_leaves.png
+
+newmtl 5/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_0_trunk.png
+
+newmtl 5/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_1_leaves.png
+
+newmtl 5/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_1_trunk.png
+
+newmtl 5/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_2_leaves.png
+
+newmtl 5/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_2_trunk.png
+
+newmtl 5/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_3_leaves.png
+
+newmtl 5/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_3_trunk.png
+
+newmtl 5/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_4_leaves.png
+
+newmtl 5/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 5_4_trunk.png
+
+newmtl 6/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_0_leaves.png
+
+newmtl 6/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_0_trunk.png
+
+newmtl 6/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_1_leaves.png
+
+newmtl 6/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_1_trunk.png
+
+newmtl 6/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_2_leaves.png
+
+newmtl 6/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_2_trunk.png
+
+newmtl 6/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_3_leaves.png
+
+newmtl 6/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_3_trunk.png
+
+newmtl 6/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_4_leaves.png
+
+newmtl 6/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 6_4_trunk.png
+
+newmtl 7/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_0_leaves.png
+
+newmtl 7/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_0_trunk.png
+
+newmtl 7/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_1_leaves.png
+
+newmtl 7/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_1_trunk.png
+
+newmtl 7/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_2_leaves.png
+
+newmtl 7/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_2_trunk.png
+
+newmtl 7/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_3_leaves.png
+
+newmtl 7/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_3_trunk.png
+
+newmtl 7/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_4_leaves.png
+
+newmtl 7/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 7_4_trunk.png
+
+newmtl 8/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_0_leaves.png
+
+newmtl 8/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_0_trunk.png
+
+newmtl 8/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_1_leaves.png
+
+newmtl 8/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_1_trunk.png
+
+newmtl 8/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_2_leaves.png
+
+newmtl 8/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_2_trunk.png
+
+newmtl 8/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_3_leaves.png
+
+newmtl 8/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_3_trunk.png
+
+newmtl 8/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_4_leaves.png
+
+newmtl 8/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 8_4_trunk.png
+
+newmtl 9/0/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_0_leaves.png
+
+newmtl 9/0/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_0_trunk.png
+
+newmtl 9/1/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_1_leaves.png
+
+newmtl 9/1/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_1_trunk.png
+
+newmtl 9/2/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_2_leaves.png
+
+newmtl 9/2/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_2_trunk.png
+
+newmtl 9/3/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_3_leaves.png
+
+newmtl 9/3/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_3_trunk.png
+
+newmtl 9/4/leaves
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_4_leaves.png
+
+newmtl 9/4/trunk
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0 0 0
+map_Kd 9_4_trunk.png
