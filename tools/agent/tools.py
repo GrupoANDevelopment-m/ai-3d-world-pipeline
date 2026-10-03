@@ -218,9 +218,10 @@ class ToolRegistry:
             description="Gera mundo procedural com Bycob/world (C++). Tipos: terrain, tree, mapper. Retorna .obj + .png.",
             parameters={
                 "test": ToolParameter("string", "Tipo de asset a gerar", enum=["terrain", "tree", "mapper"], default="terrain"),
-                "output_dir": ToolParameter("string", "Diretório de saída", required=False),
-                "size": ToolParameter("integer", "Tamanho (vertices por lado)", required=False, default=128),
-                "seed": ToolParameter("integer", "Seed aleatório", required=False, default=42),
+                "output": ToolParameter("string", "Diretório de saída (--output)", required=False, default="./bycob_out"),
+                "seed": ToolParameter("integer", "Seed aleatório (--seed)", required=False, default=42),
+                "terrain": ToolParameter("boolean", "Inclui terrain mesh", required=False, default=True),
+                "vegetation": ToolParameter("boolean", "Inclui vegetation/trees", required=False, default=True),
             },
             category="generation",
             backend="sh",
@@ -246,11 +247,11 @@ class ToolRegistry:
 
         self.register(Tool(
             name="cubiquity_generate",
-            description="Gera voxel world procedural com Cubiquity (C++). Algoritmos: menger_sponge, fractal_noise, worley_noise, checkerboard.",
+            description="Gera voxel world procedural com Cubiquity (C++). Algoritmos: menger_sponge, fractal_noise, worley_noise, checkerboard. Retorna slices PNG + arquivo .dag.",
             parameters={
                 "algorithm": ToolParameter("string", "Algoritmo procedural", enum=["menger_sponge", "fractal_noise", "worley_noise", "checkerboard"]),
-                "size": ToolParameter("integer", "Tamanho em voxels por eixo", default=128),
-                "output_dir": ToolParameter("string", "Diretório de saída"),
+                "size": ToolParameter("integer", "Tamanho em voxels por eixo (8-256)", default=64),
+                "output-dir": ToolParameter("string", "Diretório ABSOLUTO de saída (--output-dir)", required=False, default="/workspace/ai-3d-world-pipeline/outputs/cubiquity_default"),
             },
             category="generation",
             backend="sh",
@@ -342,11 +343,10 @@ class ToolRegistry:
 
         self.register(Tool(
             name="godot_build_scene",
-            description="Cria projeto Godot 4 completo (jogo jogável) a partir de GLB.",
+            description="Cria projeto Godot 4 completo (jogo jogável) a partir de GLB. Gera project.godot, scripts/player.gd (WASD+space+mouse look), assets/world.glb.",
             parameters={
-                "glb": ToolParameter("string", "Arquivo .glb do mundo"),
-                "output": ToolParameter("string", "Diretório do projeto Godot"),
-                "scene_name": ToolParameter("string", "Nome da cena", required=False, default="Generated World"),
+                "glb": ToolParameter("string", "Caminho ABSOLUTO do arquivo .glb do mundo (--glb)"),
+                "output": ToolParameter("string", "Caminho do diretório ABSOLUTO do projeto Godot (--output)"),
             },
             category="export",
             backend="python",
@@ -356,12 +356,13 @@ class ToolRegistry:
 
         self.register(Tool(
             name="asset_processor",
-            description="Pipeline Python para processar assets 3D (OBJ/GLB) com LODs.",
+            description="Pipeline Python para processar assets 3D (OBJ/GLB) com LODs. Aceita --input, --output, --max-tris, --lod-levels, --collider.",
             parameters={
-                "input": ToolParameter("string", "Arquivo de entrada"),
-                "output": ToolParameter("string", "Arquivo de saída"),
+                "input": ToolParameter("string", "Caminho ABSOLUTO do arquivo de entrada (.obj ou .glb)"),
+                "output": ToolParameter("string", "Caminho ABSOLUTO do arquivo de saída (.glb)"),
                 "max_tris": ToolParameter("integer", "Máx triângulos", required=False, default=50000),
                 "lod_levels": ToolParameter("integer", "Níveis LOD", required=False, default=3),
+                "collider": ToolParameter("string", "Tipo de collider (trimesh|convex|none)", enum=["trimesh", "convex", "none"], required=False, default="trimesh"),
             },
             category="processing",
             backend="python",

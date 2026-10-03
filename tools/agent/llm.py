@@ -27,7 +27,16 @@ class LLMConfig:
 
     @classmethod
     def from_env(cls) -> "LLMConfig":
-        # prioridade: custom > deepseek > openai
+        # prioridade: nvidia > custom > deepseek > openai > demo
+        nvidia_key = os.environ.get("NVIDIA_API_KEY") or os.environ.get("NVAPI_KEY")
+        if nvidia_key:
+            return cls(
+                provider="nvidia",
+                model=os.environ.get("NVIDIA_MODEL", "nvidia/nemotron-3-ultra-550b-a55b"),
+                api_key=nvidia_key,
+                base_url=os.environ.get("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1"),
+            )
+
         custom_key = os.environ.get("LLM_API_KEY")
         custom_url = os.environ.get("LLM_BASE_URL")
         custom_model = os.environ.get("LLM_MODEL", "gpt-4o-mini")
@@ -103,6 +112,14 @@ def chat_completion(
         kwargs["tools"] = tools
         kwargs["tool_choice"] = tool_choice
 
+    # NVIDIA Nemotron specific: enable thinking via chat_template_kwargs
+    if cfg.provider == "nvidia":
+        kwargs["top_p"] = 0.95
+        kwargs["extra_body"] = {"chat_template_kwargs": {"enable_thinking": True}}
+        # increase max tokens if too small for reasoning
+        if cfg.max_tokens < 16384:
+            kwargs["max_tokens"] = 16384
+
     try:
         resp = client.chat.completions.create(**kwargs)
         msg = resp.choices[0].message
@@ -111,6 +128,10 @@ def chat_completion(
             "content": msg.content or "",
             "tool_calls": [],
         }
+        # capture reasoning_content if present (NVIDIA reasoning)
+        reasoning = getattr(msg, "reasoning_content", None)
+        if reasoning:
+            result["reasoning"] = reasoning
         if msg.tool_calls:
             for tc in msg.tool_calls:
                 import json as _json

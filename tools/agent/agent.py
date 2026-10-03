@@ -116,6 +116,8 @@ class Agent:
             tool_calls = resp.get("tool_calls", [])
 
             self.session.add_assistant(content, tool_calls)
+            if resp.get("reasoning") and self.opts.verbose:
+                print(f"[reasoning]\n{resp['reasoning'][:500]}...")
             if content and self.opts.verbose:
                 print(f"[assistant] {content}")
 
