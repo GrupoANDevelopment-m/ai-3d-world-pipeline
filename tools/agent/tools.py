@@ -355,6 +355,43 @@ class ToolRegistry:
         ))
 
         self.register(Tool(
+            name="worldgen_lite_i2mesh",
+            description="WorldGen-Lite (ZiYang-xie/WorldGen CPU-compatible): converte panorama equirectangular em mesh 3D (.ply/.obj). Skip FLUX (gated), usa depth heuristic + Poisson reconstruction.",
+            parameters={
+                "input": ToolParameter("string", "Panorama equirectangular 2:1 (jpg/png)"),
+                "output": ToolParameter("string", "Arquivo .ply de saída"),
+                "obj": ToolParameter("string", "Também exportar .obj (--obj)", required=False),
+                "method": ToolParameter("string", "Reconstruction method", enum=["poisson", "ball_pivoting", "alpha_shape"], required=False, default="poisson"),
+                "downscale": ToolParameter("integer", "Fator de redução (default 8)", required=False, default=8),
+                "far": ToolParameter("number", "Distância máxima (metros)", required=False, default=100.0),
+                "near": ToolParameter("number", "Distância mínima (metros)", required=False, default=0.5),
+            },
+            category="generation",
+            backend="sh",
+            target=str(WRAPPERS_DIR / "worldgen_lite_i2mesh.sh"),
+            timeout_s=300,
+        ))
+
+        self.register(Tool(
+            name="worldgen_lite_t2mesh",
+            description="WorldGen-Lite: text prompt → mesh 3D. Se HF_TOKEN fornecido usa FLUX.1-dev real (gated). Senão gera panorama procedural baseada em keywords (snow/forest/mountain/city/etc).",
+            parameters={
+                "prompt": ToolParameter("string", "Text prompt descrevendo a cena"),
+                "output": ToolParameter("string", "Arquivo .ply de saída"),
+                "obj": ToolParameter("string", "Também exportar .obj", required=False),
+                "method": ToolParameter("string", "Reconstruction", enum=["poisson", "ball_pivoting", "alpha_shape"], required=False, default="poisson"),
+                "downscale": ToolParameter("integer", "Fator de redução", required=False, default=8),
+                "resolution": ToolParameter("integer", "Resolução panorama (largura)", required=False, default=1024),
+                "hf-token": ToolParameter("string", "HF token para FLUX real (opcional)", required=False),
+                "fallback-procedural": ToolParameter("boolean", "Permitir fallback procedural", required=False, default=True),
+            },
+            category="generation",
+            backend="sh",
+            target=str(WRAPPERS_DIR / "worldgen_lite_t2mesh.sh"),
+            timeout_s=600,
+        ))
+
+        self.register(Tool(
             name="asset_processor",
             description="Pipeline Python para processar assets 3D (OBJ/GLB) com LODs. Aceita --input, --output, --max-tris, --lod-levels, --collider.",
             parameters={
