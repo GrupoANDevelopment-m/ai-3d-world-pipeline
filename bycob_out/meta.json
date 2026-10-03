@@ -1,8 +1,8 @@
 {
   "tool": "bycob_world",
   "version": "main",
-  "started_at": "2026-10-03T08:43:41Z",
-  "duration_s": 12,
+  "started_at": "2026-10-03T10:43:11Z",
+  "duration_s": 10,
   "seed": 42,
   "binary_path": "/workspace/tools/world/build/bin/",
   "features": {

@@ -2,8 +2,8 @@
   "tool": "asset_processor",
   "input": "./bycob_out/terrain.obj",
   "output": "bycob_out/terrain.glb",
-  "max_tris_target": 30000,
+  "max_tris_target": 50000,
   "lod_levels": 3,
   "collider": "trimesh",
-  "source_polycount": 29999
+  "source_polycount": 32768
 }
