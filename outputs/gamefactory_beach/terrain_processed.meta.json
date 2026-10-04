@@ -1,0 +1,9 @@
+{
+  "tool": "asset_processor",
+  "input": "/workspace/ai-3d-world-pipeline/outputs/gamefactory_beach/terrain.obj",
+  "output": "/workspace/ai-3d-world-pipeline/outputs/gamefactory_beach/terrain_processed.glb",
+  "max_tris_target": 30000,
+  "lod_levels": 3,
+  "collider": "trimesh",
+  "source_polycount": 29999
+}

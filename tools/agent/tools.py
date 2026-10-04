@@ -392,6 +392,28 @@ class ToolRegistry:
         ))
 
         self.register(Tool(
+            name="gamefactory_3a",
+            description="GameFactory-3A: pipeline AAA-like assets. Text prompt → WorldGen mesh + Bycob trees + Cubiquity voxel + Blender GLB + Godot project. Gera diretório completo pronto pra rodar.",
+            parameters={
+                "prompt": ToolParameter("string", "Text prompt (ex: 'cozy medieval village')"),
+                "output": ToolParameter("string", "Diretório de saída (será criado)"),
+                "scene-name": ToolParameter("string", "Nome da cena no Godot", required=False, default="Generated World"),
+                "include-voxel": ToolParameter("boolean", "Inclui voxel decoration (Cubiquity)", required=False, default=True),
+                "include-trees": ToolParameter("boolean", "Inclui trees/instances (Bycob)", required=False, default=True),
+                "include-lod": ToolParameter("boolean", "Inclui LOD generation (Blender)", required=False, default=True),
+                "voxel-algo": ToolParameter("string", "Algoritmo voxel", enum=["menger_sponge", "fractal_noise", "worley_noise", "checkerboard"], required=False, default="menger_sponge"),
+                "voxel-size": ToolParameter("integer", "Tamanho voxel (8-256)", required=False, default=32),
+                "downscale": ToolParameter("integer", "WorldGen downscale", required=False, default=16),
+                "lod-levels": ToolParameter("integer", "Níveis LOD", required=False, default=3),
+                "max-tris": ToolParameter("integer", "Máx triângulos", required=False, default=30000),
+            },
+            category="generation",
+            backend="sh",
+            target=str(WRAPPERS_DIR / "gamefactory_3a.sh"),
+            timeout_s=900,
+        ))
+
+        self.register(Tool(
             name="asset_processor",
             description="Pipeline Python para processar assets 3D (OBJ/GLB) com LODs. Aceita --input, --output, --max-tris, --lod-levels, --collider.",
             parameters={

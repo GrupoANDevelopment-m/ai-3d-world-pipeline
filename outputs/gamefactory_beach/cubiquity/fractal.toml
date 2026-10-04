@@ -1,0 +1,777 @@
+# Materials
+# ---------
+# This array of tables contains the material properties. Each voxel is an 8-bit
+# unsigned integer and so there can be up to 256 materials in the array below.
+#
+# Note that each material begins with *double* square brackets [[...]] as this
+# is the TOML syntax for an array-of-tables.
+
+[[materials]] # Material index 0
+name = "EmptySpace"
+
+[[materials]] # Material index 1
+name = "CellBorder"
+base_color = [0.1000, 0.1000, 0.1000]
+
+[[materials]] # Material index 2
+base_color = [0.8000, 0.0000, 0.0000]
+
+[[materials]] # Material index 3
+base_color = [0.8000, 0.0189, 0.0000]
+
+[[materials]] # Material index 4
+base_color = [0.8000, 0.0378, 0.0000]
+
+[[materials]] # Material index 5
+base_color = [0.8000, 0.0567, 0.0000]
+
+[[materials]] # Material index 6
+base_color = [0.8000, 0.0756, 0.0000]
+
+[[materials]] # Material index 7
+base_color = [0.8000, 0.0945, 0.0000]
+
+[[materials]] # Material index 8
+base_color = [0.8000, 0.1134, 0.0000]
+
+[[materials]] # Material index 9
+base_color = [0.8000, 0.1323, 0.0000]
+
+[[materials]] # Material index 10
+base_color = [0.8000, 0.1512, 0.0000]
+
+[[materials]] # Material index 11
+base_color = [0.8000, 0.1701, 0.0000]
+
+[[materials]] # Material index 12
+base_color = [0.8000, 0.1890, 0.0000]
+
+[[materials]] # Material index 13
+base_color = [0.8000, 0.2079, 0.0000]
+
+[[materials]] # Material index 14
+base_color = [0.8000, 0.2268, 0.0000]
+
+[[materials]] # Material index 15
+base_color = [0.8000, 0.2457, 0.0000]
+
+[[materials]] # Material index 16
+base_color = [0.8000, 0.2646, 0.0000]
+
+[[materials]] # Material index 17
+base_color = [0.8000, 0.2835, 0.0000]
+
+[[materials]] # Material index 18
+base_color = [0.8000, 0.3024, 0.0000]
+
+[[materials]] # Material index 19
+base_color = [0.8000, 0.3213, 0.0000]
+
+[[materials]] # Material index 20
+base_color = [0.8000, 0.3402, 0.0000]
+
+[[materials]] # Material index 21
+base_color = [0.8000, 0.3591, 0.0000]
+
+[[materials]] # Material index 22
+base_color = [0.8000, 0.3780, 0.0000]
+
+[[materials]] # Material index 23
+base_color = [0.8000, 0.3969, 0.0000]
+
+[[materials]] # Material index 24
+base_color = [0.8000, 0.4157, 0.0000]
+
+[[materials]] # Material index 25
+base_color = [0.8000, 0.4346, 0.0000]
+
+[[materials]] # Material index 26
+base_color = [0.8000, 0.4535, 0.0000]
+
+[[materials]] # Material index 27
+base_color = [0.8000, 0.4724, 0.0000]
+
+[[materials]] # Material index 28
+base_color = [0.8000, 0.4913, 0.0000]
+
+[[materials]] # Material index 29
+base_color = [0.8000, 0.5102, 0.0000]
+
+[[materials]] # Material index 30
+base_color = [0.8000, 0.5291, 0.0000]
+
+[[materials]] # Material index 31
+base_color = [0.8000, 0.5480, 0.0000]
+
+[[materials]] # Material index 32
+base_color = [0.8000, 0.5669, 0.0000]
+
+[[materials]] # Material index 33
+base_color = [0.8000, 0.5858, 0.0000]
+
+[[materials]] # Material index 34
+base_color = [0.8000, 0.6047, 0.0000]
+
+[[materials]] # Material index 35
+base_color = [0.8000, 0.6236, 0.0000]
+
+[[materials]] # Material index 36
+base_color = [0.8000, 0.6425, 0.0000]
+
+[[materials]] # Material index 37
+base_color = [0.8000, 0.6614, 0.0000]
+
+[[materials]] # Material index 38
+base_color = [0.8000, 0.6803, 0.0000]
+
+[[materials]] # Material index 39
+base_color = [0.8000, 0.6992, 0.0000]
+
+[[materials]] # Material index 40
+base_color = [0.8000, 0.7181, 0.0000]
+
+[[materials]] # Material index 41
+base_color = [0.8000, 0.7370, 0.0000]
+
+[[materials]] # Material index 42
+base_color = [0.8000, 0.7559, 0.0000]
+
+[[materials]] # Material index 43
+base_color = [0.8000, 0.7748, 0.0000]
+
+[[materials]] # Material index 44
+base_color = [0.8000, 0.7937, 0.0000]
+
+[[materials]] # Material index 45
+base_color = [0.7874, 0.8000, 0.0000]
+
+[[materials]] # Material index 46
+base_color = [0.7685, 0.8000, 0.0000]
+
+[[materials]] # Material index 47
+base_color = [0.7496, 0.8000, 0.0000]
+
+[[materials]] # Material index 48
+base_color = [0.7307, 0.8000, 0.0000]
+
+[[materials]] # Material index 49
+base_color = [0.7118, 0.8000, 0.0000]
+
+[[materials]] # Material index 50
+base_color = [0.6929, 0.8000, 0.0000]
+
+[[materials]] # Material index 51
+base_color = [0.6740, 0.8000, 0.0000]
+
+[[materials]] # Material index 52
+base_color = [0.6551, 0.8000, 0.0000]
+
+[[materials]] # Material index 53
+base_color = [0.6362, 0.8000, 0.0000]
+
+[[materials]] # Material index 54
+base_color = [0.6173, 0.8000, 0.0000]
+
+[[materials]] # Material index 55
+base_color = [0.5984, 0.8000, 0.0000]
+
+[[materials]] # Material index 56
+base_color = [0.5795, 0.8000, 0.0000]
+
+[[materials]] # Material index 57
+base_color = [0.5606, 0.8000, 0.0000]
+
+[[materials]] # Material index 58
+base_color = [0.5417, 0.8000, 0.0000]
+
+[[materials]] # Material index 59
+base_color = [0.5228, 0.8000, 0.0000]
+
+[[materials]] # Material index 60
+base_color = [0.5039, 0.8000, 0.0000]
+
+[[materials]] # Material index 61
+base_color = [0.4850, 0.8000, 0.0000]
+
+[[materials]] # Material index 62
+base_color = [0.4661, 0.8000, 0.0000]
+
+[[materials]] # Material index 63
+base_color = [0.4472, 0.8000, 0.0000]
+
+[[materials]] # Material index 64
+base_color = [0.4283, 0.8000, 0.0000]
+
+[[materials]] # Material index 65
+base_color = [0.4094, 0.8000, 0.0000]
+
+[[materials]] # Material index 66
+base_color = [0.3906, 0.8000, 0.0000]
+
+[[materials]] # Material index 67
+base_color = [0.3717, 0.8000, 0.0000]
+
+[[materials]] # Material index 68
+base_color = [0.3528, 0.8000, 0.0000]
+
+[[materials]] # Material index 69
+base_color = [0.3339, 0.8000, 0.0000]
+
+[[materials]] # Material index 70
+base_color = [0.3150, 0.8000, 0.0000]
+
+[[materials]] # Material index 71
+base_color = [0.2961, 0.8000, 0.0000]
+
+[[materials]] # Material index 72
+base_color = [0.2772, 0.8000, 0.0000]
+
+[[materials]] # Material index 73
+base_color = [0.2583, 0.8000, 0.0000]
+
+[[materials]] # Material index 74
+base_color = [0.2394, 0.8000, 0.0000]
+
+[[materials]] # Material index 75
+base_color = [0.2205, 0.8000, 0.0000]
+
+[[materials]] # Material index 76
+base_color = [0.2016, 0.8000, 0.0000]
+
+[[materials]] # Material index 77
+base_color = [0.1827, 0.8000, 0.0000]
+
+[[materials]] # Material index 78
+base_color = [0.1638, 0.8000, 0.0000]
+
+[[materials]] # Material index 79
+base_color = [0.1449, 0.8000, 0.0000]
+
+[[materials]] # Material index 80
+base_color = [0.1260, 0.8000, 0.0000]
+
+[[materials]] # Material index 81
+base_color = [0.1071, 0.8000, 0.0000]
+
+[[materials]] # Material index 82
+base_color = [0.0882, 0.8000, 0.0000]
+
+[[materials]] # Material index 83
+base_color = [0.0693, 0.8000, 0.0000]
+
+[[materials]] # Material index 84
+base_color = [0.0504, 0.8000, 0.0000]
+
+[[materials]] # Material index 85
+base_color = [0.0315, 0.8000, 0.0000]
+
+[[materials]] # Material index 86
+base_color = [0.0126, 0.8000, 0.0000]
+
+[[materials]] # Material index 87
+base_color = [0.0000, 0.8000, 0.0063]
+
+[[materials]] # Material index 88
+base_color = [0.0000, 0.8000, 0.0252]
+
+[[materials]] # Material index 89
+base_color = [0.0000, 0.8000, 0.0441]
+
+[[materials]] # Material index 90
+base_color = [0.0000, 0.8000, 0.0630]
+
+[[materials]] # Material index 91
+base_color = [0.0000, 0.8000, 0.0819]
+
+[[materials]] # Material index 92
+base_color = [0.0000, 0.8000, 0.1008]
+
+[[materials]] # Material index 93
+base_color = [0.0000, 0.8000, 0.1197]
+
+[[materials]] # Material index 94
+base_color = [0.0000, 0.8000, 0.1386]
+
+[[materials]] # Material index 95
+base_color = [0.0000, 0.8000, 0.1575]
+
+[[materials]] # Material index 96
+base_color = [0.0000, 0.8000, 0.1764]
+
+[[materials]] # Material index 97
+base_color = [0.0000, 0.8000, 0.1953]
+
+[[materials]] # Material index 98
+base_color = [0.0000, 0.8000, 0.2142]
+
+[[materials]] # Material index 99
+base_color = [0.0000, 0.8000, 0.2331]
+
+[[materials]] # Material index 100
+base_color = [0.0000, 0.8000, 0.2520]
+
+[[materials]] # Material index 101
+base_color = [0.0000, 0.8000, 0.2709]
+
+[[materials]] # Material index 102
+base_color = [0.0000, 0.8000, 0.2898]
+
+[[materials]] # Material index 103
+base_color = [0.0000, 0.8000, 0.3087]
+
+[[materials]] # Material index 104
+base_color = [0.0000, 0.8000, 0.3276]
+
+[[materials]] # Material index 105
+base_color = [0.0000, 0.8000, 0.3465]
+
+[[materials]] # Material index 106
+base_color = [0.0000, 0.8000, 0.3654]
+
+[[materials]] # Material index 107
+base_color = [0.0000, 0.8000, 0.3843]
+
+[[materials]] # Material index 108
+base_color = [0.0000, 0.8000, 0.4031]
+
+[[materials]] # Material index 109
+base_color = [0.0000, 0.8000, 0.4220]
+
+[[materials]] # Material index 110
+base_color = [0.0000, 0.8000, 0.4409]
+
+[[materials]] # Material index 111
+base_color = [0.0000, 0.8000, 0.4598]
+
+[[materials]] # Material index 112
+base_color = [0.0000, 0.8000, 0.4787]
+
+[[materials]] # Material index 113
+base_color = [0.0000, 0.8000, 0.4976]
+
+[[materials]] # Material index 114
+base_color = [0.0000, 0.8000, 0.5165]
+
+[[materials]] # Material index 115
+base_color = [0.0000, 0.8000, 0.5354]
+
+[[materials]] # Material index 116
+base_color = [0.0000, 0.8000, 0.5543]
+
+[[materials]] # Material index 117
+base_color = [0.0000, 0.8000, 0.5732]
+
+[[materials]] # Material index 118
+base_color = [0.0000, 0.8000, 0.5921]
+
+[[materials]] # Material index 119
+base_color = [0.0000, 0.8000, 0.6110]
+
+[[materials]] # Material index 120
+base_color = [0.0000, 0.8000, 0.6299]
+
+[[materials]] # Material index 121
+base_color = [0.0000, 0.8000, 0.6488]
+
+[[materials]] # Material index 122
+base_color = [0.0000, 0.8000, 0.6677]
+
+[[materials]] # Material index 123
+base_color = [0.0000, 0.8000, 0.6866]
+
+[[materials]] # Material index 124
+base_color = [0.0000, 0.8000, 0.7055]
+
+[[materials]] # Material index 125
+base_color = [0.0000, 0.8000, 0.7244]
+
+[[materials]] # Material index 126
+base_color = [0.0000, 0.8000, 0.7433]
+
+[[materials]] # Material index 127
+base_color = [0.0000, 0.8000, 0.7622]
+
+[[materials]] # Material index 128
+base_color = [0.0000, 0.8000, 0.7811]
+
+[[materials]] # Material index 129
+base_color = [0.0000, 0.8000, 0.8000]
+
+[[materials]] # Material index 130
+base_color = [0.0000, 0.7811, 0.8000]
+
+[[materials]] # Material index 131
+base_color = [0.0000, 0.7622, 0.8000]
+
+[[materials]] # Material index 132
+base_color = [0.0000, 0.7433, 0.8000]
+
+[[materials]] # Material index 133
+base_color = [0.0000, 0.7244, 0.8000]
+
+[[materials]] # Material index 134
+base_color = [0.0000, 0.7055, 0.8000]
+
+[[materials]] # Material index 135
+base_color = [0.0000, 0.6866, 0.8000]
+
+[[materials]] # Material index 136
+base_color = [0.0000, 0.6677, 0.8000]
+
+[[materials]] # Material index 137
+base_color = [0.0000, 0.6488, 0.8000]
+
+[[materials]] # Material index 138
+base_color = [0.0000, 0.6299, 0.8000]
+
+[[materials]] # Material index 139
+base_color = [0.0000, 0.6110, 0.8000]
+
+[[materials]] # Material index 140
+base_color = [0.0000, 0.5921, 0.8000]
+
+[[materials]] # Material index 141
+base_color = [0.0000, 0.5732, 0.8000]
+
+[[materials]] # Material index 142
+base_color = [0.0000, 0.5543, 0.8000]
+
+[[materials]] # Material index 143
+base_color = [0.0000, 0.5354, 0.8000]
+
+[[materials]] # Material index 144
+base_color = [0.0000, 0.5165, 0.8000]
+
+[[materials]] # Material index 145
+base_color = [0.0000, 0.4976, 0.8000]
+
+[[materials]] # Material index 146
+base_color = [0.0000, 0.4787, 0.8000]
+
+[[materials]] # Material index 147
+base_color = [0.0000, 0.4598, 0.8000]
+
+[[materials]] # Material index 148
+base_color = [0.0000, 0.4409, 0.8000]
+
+[[materials]] # Material index 149
+base_color = [0.0000, 0.4220, 0.8000]
+
+[[materials]] # Material index 150
+base_color = [0.0000, 0.4032, 0.8000]
+
+[[materials]] # Material index 151
+base_color = [0.0000, 0.3843, 0.8000]
+
+[[materials]] # Material index 152
+base_color = [0.0000, 0.3654, 0.8000]
+
+[[materials]] # Material index 153
+base_color = [0.0000, 0.3465, 0.8000]
+
+[[materials]] # Material index 154
+base_color = [0.0000, 0.3276, 0.8000]
+
+[[materials]] # Material index 155
+base_color = [0.0000, 0.3087, 0.8000]
+
+[[materials]] # Material index 156
+base_color = [0.0000, 0.2898, 0.8000]
+
+[[materials]] # Material index 157
+base_color = [0.0000, 0.2709, 0.8000]
+
+[[materials]] # Material index 158
+base_color = [0.0000, 0.2520, 0.8000]
+
+[[materials]] # Material index 159
+base_color = [0.0000, 0.2331, 0.8000]
+
+[[materials]] # Material index 160
+base_color = [0.0000, 0.2142, 0.8000]
+
+[[materials]] # Material index 161
+base_color = [0.0000, 0.1953, 0.8000]
+
+[[materials]] # Material index 162
+base_color = [0.0000, 0.1764, 0.8000]
+
+[[materials]] # Material index 163
+base_color = [0.0000, 0.1575, 0.8000]
+
+[[materials]] # Material index 164
+base_color = [0.0000, 0.1386, 0.8000]
+
+[[materials]] # Material index 165
+base_color = [0.0000, 0.1197, 0.8000]
+
+[[materials]] # Material index 166
+base_color = [0.0000, 0.1008, 0.8000]
+
+[[materials]] # Material index 167
+base_color = [0.0000, 0.0819, 0.8000]
+
+[[materials]] # Material index 168
+base_color = [0.0000, 0.0630, 0.8000]
+
+[[materials]] # Material index 169
+base_color = [0.0000, 0.0441, 0.8000]
+
+[[materials]] # Material index 170
+base_color = [0.0000, 0.0252, 0.8000]
+
+[[materials]] # Material index 171
+base_color = [0.0000, 0.0063, 0.8000]
+
+[[materials]] # Material index 172
+base_color = [0.0126, 0.0000, 0.8000]
+
+[[materials]] # Material index 173
+base_color = [0.0315, 0.0000, 0.8000]
+
+[[materials]] # Material index 174
+base_color = [0.0504, 0.0000, 0.8000]
+
+[[materials]] # Material index 175
+base_color = [0.0693, 0.0000, 0.8000]
+
+[[materials]] # Material index 176
+base_color = [0.0882, 0.0000, 0.8000]
+
+[[materials]] # Material index 177
+base_color = [0.1071, 0.0000, 0.8000]
+
+[[materials]] # Material index 178
+base_color = [0.1260, 0.0000, 0.8000]
+
+[[materials]] # Material index 179
+base_color = [0.1449, 0.0000, 0.8000]
+
+[[materials]] # Material index 180
+base_color = [0.1638, 0.0000, 0.8000]
+
+[[materials]] # Material index 181
+base_color = [0.1827, 0.0000, 0.8000]
+
+[[materials]] # Material index 182
+base_color = [0.2016, 0.0000, 0.8000]
+
+[[materials]] # Material index 183
+base_color = [0.2205, 0.0000, 0.8000]
+
+[[materials]] # Material index 184
+base_color = [0.2394, 0.0000, 0.8000]
+
+[[materials]] # Material index 185
+base_color = [0.2583, 0.0000, 0.8000]
+
+[[materials]] # Material index 186
+base_color = [0.2772, 0.0000, 0.8000]
+
+[[materials]] # Material index 187
+base_color = [0.2961, 0.0000, 0.8000]
+
+[[materials]] # Material index 188
+base_color = [0.3150, 0.0000, 0.8000]
+
+[[materials]] # Material index 189
+base_color = [0.3339, 0.0000, 0.8000]
+
+[[materials]] # Material index 190
+base_color = [0.3528, 0.0000, 0.8000]
+
+[[materials]] # Material index 191
+base_color = [0.3717, 0.0000, 0.8000]
+
+[[materials]] # Material index 192
+base_color = [0.3906, 0.0000, 0.8000]
+
+[[materials]] # Material index 193
+base_color = [0.4094, 0.0000, 0.8000]
+
+[[materials]] # Material index 194
+base_color = [0.4283, 0.0000, 0.8000]
+
+[[materials]] # Material index 195
+base_color = [0.4472, 0.0000, 0.8000]
+
+[[materials]] # Material index 196
+base_color = [0.4661, 0.0000, 0.8000]
+
+[[materials]] # Material index 197
+base_color = [0.4850, 0.0000, 0.8000]
+
+[[materials]] # Material index 198
+base_color = [0.5039, 0.0000, 0.8000]
+
+[[materials]] # Material index 199
+base_color = [0.5228, 0.0000, 0.8000]
+
+[[materials]] # Material index 200
+base_color = [0.5417, 0.0000, 0.8000]
+
+[[materials]] # Material index 201
+base_color = [0.5606, 0.0000, 0.8000]
+
+[[materials]] # Material index 202
+base_color = [0.5795, 0.0000, 0.8000]
+
+[[materials]] # Material index 203
+base_color = [0.5984, 0.0000, 0.8000]
+
+[[materials]] # Material index 204
+base_color = [0.6173, 0.0000, 0.8000]
+
+[[materials]] # Material index 205
+base_color = [0.6362, 0.0000, 0.8000]
+
+[[materials]] # Material index 206
+base_color = [0.6551, 0.0000, 0.8000]
+
+[[materials]] # Material index 207
+base_color = [0.6740, 0.0000, 0.8000]
+
+[[materials]] # Material index 208
+base_color = [0.6929, 0.0000, 0.8000]
+
+[[materials]] # Material index 209
+base_color = [0.7118, 0.0000, 0.8000]
+
+[[materials]] # Material index 210
+base_color = [0.7307, 0.0000, 0.8000]
+
+[[materials]] # Material index 211
+base_color = [0.7496, 0.0000, 0.8000]
+
+[[materials]] # Material index 212
+base_color = [0.7685, 0.0000, 0.8000]
+
+[[materials]] # Material index 213
+base_color = [0.7874, 0.0000, 0.8000]
+
+[[materials]] # Material index 214
+base_color = [0.8000, 0.0000, 0.7937]
+
+[[materials]] # Material index 215
+base_color = [0.8000, 0.0000, 0.7748]
+
+[[materials]] # Material index 216
+base_color = [0.8000, 0.0000, 0.7559]
+
+[[materials]] # Material index 217
+base_color = [0.8000, 0.0000, 0.7370]
+
+[[materials]] # Material index 218
+base_color = [0.8000, 0.0000, 0.7181]
+
+[[materials]] # Material index 219
+base_color = [0.8000, 0.0000, 0.6992]
+
+[[materials]] # Material index 220
+base_color = [0.8000, 0.0000, 0.6803]
+
+[[materials]] # Material index 221
+base_color = [0.8000, 0.0000, 0.6614]
+
+[[materials]] # Material index 222
+base_color = [0.8000, 0.0000, 0.6425]
+
+[[materials]] # Material index 223
+base_color = [0.8000, 0.0000, 0.6236]
+
+[[materials]] # Material index 224
+base_color = [0.8000, 0.0000, 0.6047]
+
+[[materials]] # Material index 225
+base_color = [0.8000, 0.0000, 0.5858]
+
+[[materials]] # Material index 226
+base_color = [0.8000, 0.0000, 0.5669]
+
+[[materials]] # Material index 227
+base_color = [0.8000, 0.0000, 0.5480]
+
+[[materials]] # Material index 228
+base_color = [0.8000, 0.0000, 0.5291]
+
+[[materials]] # Material index 229
+base_color = [0.8000, 0.0000, 0.5102]
+
+[[materials]] # Material index 230
+base_color = [0.8000, 0.0000, 0.4913]
+
+[[materials]] # Material index 231
+base_color = [0.8000, 0.0000, 0.4724]
+
+[[materials]] # Material index 232
+base_color = [0.8000, 0.0000, 0.4535]
+
+[[materials]] # Material index 233
+base_color = [0.8000, 0.0000, 0.4346]
+
+[[materials]] # Material index 234
+base_color = [0.8000, 0.0000, 0.4157]
+
+[[materials]] # Material index 235
+base_color = [0.8000, 0.0000, 0.3969]
+
+[[materials]] # Material index 236
+base_color = [0.8000, 0.0000, 0.3780]
+
+[[materials]] # Material index 237
+base_color = [0.8000, 0.0000, 0.3591]
+
+[[materials]] # Material index 238
+base_color = [0.8000, 0.0000, 0.3402]
+
+[[materials]] # Material index 239
+base_color = [0.8000, 0.0000, 0.3213]
+
+[[materials]] # Material index 240
+base_color = [0.8000, 0.0000, 0.3024]
+
+[[materials]] # Material index 241
+base_color = [0.8000, 0.0000, 0.2835]
+
+[[materials]] # Material index 242
+base_color = [0.8000, 0.0000, 0.2646]
+
+[[materials]] # Material index 243
+base_color = [0.8000, 0.0000, 0.2457]
+
+[[materials]] # Material index 244
+base_color = [0.8000, 0.0000, 0.2268]
+
+[[materials]] # Material index 245
+base_color = [0.8000, 0.0000, 0.2079]
+
+[[materials]] # Material index 246
+base_color = [0.8000, 0.0000, 0.1890]
+
+[[materials]] # Material index 247
+base_color = [0.8000, 0.0000, 0.1701]
+
+[[materials]] # Material index 248
+base_color = [0.8000, 0.0000, 0.1512]
+
+[[materials]] # Material index 249
+base_color = [0.8000, 0.0000, 0.1323]
+
+[[materials]] # Material index 250
+base_color = [0.8000, 0.0000, 0.1134]
+
+[[materials]] # Material index 251
+base_color = [0.8000, 0.0000, 0.0945]
+
+[[materials]] # Material index 252
+base_color = [0.8000, 0.0000, 0.0756]
+
+[[materials]] # Material index 253
+base_color = [0.8000, 0.0000, 0.0567]
+
+[[materials]] # Material index 254
+base_color = [0.8000, 0.0000, 0.0378]
+
+[[materials]] # Material index 255
+base_color = [0.8000, 0.0000, 0.0189]
+

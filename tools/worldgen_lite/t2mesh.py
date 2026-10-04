@@ -39,92 +39,18 @@ def generate_panorama_procedural(
     height: int = 512,
 ) -> str:
     """
-    Fallback procedural sem FLUX. Gera panorama colorido baseado em palavras do prompt.
+    Fallback procedural sem FLUX. Usa procedural_pano.py que detecta biomas
+    (snow, mountain, forest, city, desert, ocean, beach, sunset, etc.)
+    e gera panoramas ricas com:
+      - Sky gradient + sol/lua/estrelas
+      - Terrain com features específicas do bioma
+      - Noise variation pra depth estimator
 
-    Heurística simples:
-      - palavras "sky", "blue" → céu azul
-      - palavras "mountain", "snow" → montanhas brancas
-      - palavras "desert", "sand" → deserto amarelo
-      - palavras "forest", "green" → floresta verde
-      - palavras "city", "night" → cidade noturna
-      - default → gradient sunset
+    Mesmo prompt = mesmo output (seed via md5).
     """
-    import numpy as np
-    from PIL import Image, ImageDraw, ImageFilter
-
-    prompt_l = prompt.lower()
-    if any(k in prompt_l for k in ["mountain", "snow", "alpine"]):
-        sky_color = (170, 200, 230)
-        ground_color = (200, 200, 210)
-    elif any(k in prompt_l for k in ["desert", "sand", "dune"]):
-        sky_color = (250, 200, 150)
-        ground_color = (220, 180, 120)
-    elif any(k in prompt_l for k in ["forest", "jungle", "green"]):
-        sky_color = (180, 220, 200)
-        ground_color = (80, 120, 60)
-    elif any(k in prompt_l for k in ["city", "urban", "night"]):
-        sky_color = (20, 25, 50)
-        ground_color = (40, 40, 60)
-    elif any(k in prompt_l for k in ["ocean", "sea", "water"]):
-        sky_color = (180, 220, 240)
-        ground_color = (40, 100, 160)
-    elif any(k in prompt_l for k in ["sunset", "dawn", "dusk"]):
-        sky_color = (240, 130, 80)
-        ground_color = (180, 90, 50)
-    else:
-        # default: sky genérico
-        sky_color = (135, 180, 220)
-        ground_color = (90, 110, 80)
-
-    # Cria panorama: gradient horizontal (sky em cima) + terreno embaixo
-    img = Image.new("RGB", (width, height), sky_color)
-    draw = ImageDraw.Draw(img)
-
-    # horizon line no meio
-    horizon_y = height // 2
-
-    # gradient no sky (top mais claro, horizon mais saturado)
-    for y in range(horizon_y):
-        t = y / horizon_y
-        r = int(sky_color[0] * (1 - t * 0.2) + sky_color[0] * t * 0.2)
-        g = int(sky_color[1] * (1 - t * 0.15) + sky_color[1] * t * 0.15)
-        b = int(sky_color[2] * (1 - t * 0.1))
-        draw.line([(0, y), (width, y)], fill=(r, g, b))
-
-    # ground gradient
-    for y in range(horizon_y, height):
-        t = (y - horizon_y) / (height - horizon_y)
-        # + escuro embaixo
-        rr = int(g_r := int(ground_color[0] * (1 - t * 0.3)))
-        gg = int(g_g := int(ground_color[1] * (1 - t * 0.3)))
-        bb = int(g_b := int(ground_color[2] * (1 - t * 0.4)))
-        draw.line([(0, y), (width, y)], fill=(rr, gg, bb))
-
-    # Adiciona noise/variation pra depth estimator pegar texturas
-    import random
-    rng = random.Random(hash(prompt) & 0xffffffff)
-    pixels = np.array(img)
-    # noise sutil
-    noise_mask = np.random.RandomState(rng.randint(0, 1<<30)).randint(-15, 15, pixels.shape).astype(np.int16)
-    pixels = np.clip(pixels.astype(np.int16) + noise_mask, 0, 255).astype(np.uint8)
-    img = Image.fromarray(pixels)
-
-    # Adiciona "montanhas" simples se keyword bate
-    if any(k in prompt_l for k in ["mountain", "alpine", "snow"]):
-        for _ in range(8):
-            cx = rng.randint(0, width)
-            base_y = rng.randint(horizon_y - 50, horizon_y + 100)
-            height_m = rng.randint(80, 200)
-            points = [(cx - height_m, height), (cx, base_y), (cx + height_m, height)]
-            color = (
-                rng.randint(180, 230),
-                rng.randint(180, 220),
-                rng.randint(190, 240),
-            )
-            draw.polygon(points, fill=color, outline=color)
-
+    from .procedural_pano import save
     out_path = "/tmp/worldgen_fallback_pano.jpg"
-    img.save(out_path, quality=85)
+    save(prompt, out_path, width, height)
     return out_path
 
 

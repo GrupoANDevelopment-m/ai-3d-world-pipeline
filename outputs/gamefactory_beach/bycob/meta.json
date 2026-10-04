@@ -1,0 +1,20 @@
+{
+  "tool": "bycob_world",
+  "version": "main",
+  "started_at": "2026-10-04T09:35:20Z",
+  "duration_s": 8,
+  "seed": 42,
+  "binary_path": "/workspace/tools/world/build/bin/",
+  "features": {
+    "terrain": true,
+    "vegetation": true,
+    "cities": false,
+    "voxels": false
+  },
+  "output": "outputs/gamefactory_beach/bycob",
+  "artifacts": {
+    "terrain_obj": "outputs/gamefactory_beach/bycob/terrain.obj",
+    "terrain_png": "outputs/gamefactory_beach/bycob/terrain.png",
+    "trees": "outputs/gamefactory_beach/bycob/tree/"
+  }
+}

@@ -1,0 +1,250 @@
+=== GameFactory-3A ===
+prompt: cozy medieval village
+output: /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo
+
+
+=== python3 -m tools.worldgen_lite.t2mesh --prompt cozy medieval village --output /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.ply --obj /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.obj --fallback-procedural --downscale 16 ===
+[t2mesh] usando fallback procedural: 'cozy medieval village'
+[t2mesh] panorama: /tmp/worldgen_fallback_pano.jpg
+[t2mesh] gerando mesh...
+[i2mesh] input: /tmp/worldgen_fallback_pano.jpg
+[i2mesh] output: /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.ply
+[i2mesh] method: poisson, downscale: 16
+[i2mesh] rgb: (32, 1024, 3), depth: (32, 1024), range: [50.24, 97.64] m
+[1;33m[Open3D WARNING] Write Ply clamped color value to valid range[0;m
+[1;33m[Open3D WARNING] Write OBJ can not include triangle normals.[0;m
+[i2mesh] OK: 32768 points → 407914 triangles
+[i2mesh]   → /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.ply
+[i2mesh]   → /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.obj
+
+=== bash /workspace/ai-3d-world-pipeline/tools/cli-wrappers/bycob_world.sh --test tree --output /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob --vegetation ===
+[bycob_world] Gerando terrain (test_terrain)...
+Creation du dossier de tests...
+Generation du terrain...
+ecriture de l'image du terrain...
+Conversion du terrain en mesh... 
+Ecriture du mesh dans un fichier .obj...
+creation de la texture
+ecriture de la texture...
+ecriture de la carte
+'/tmp/bycob.SgznzG/assets/terrain/terrain.obj' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/terrain.obj'
+'/tmp/bycob.SgznzG/assets/terrain/terrain.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/terrain.png'
+'/tmp/bycob.SgznzG/assets/terrain/test2_map.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/test2_map.png'
+'/tmp/bycob.SgznzG/assets/terrain/test2_tex.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/test2_tex.png'
+[bycob_world] Gerando trees (test_tree)...
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+[Warning] Vulkan modules are not available
+Species exported to assets/tree
+'/tmp/bycob.0jcwja/assets/tree' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree'
+'/tmp/bycob.0jcwja/assets/tree/instances.obj' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/instances.obj'
+'/tmp/bycob.0jcwja/assets/tree/instances.mtl' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/instances.mtl'
+'/tmp/bycob.0jcwja/assets/tree/0_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/0_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/0_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/0_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/0_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/0_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/0_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/0_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/0_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/0_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/0_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/1_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/1_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/1_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/1_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/1_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/1_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/1_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/1_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/1_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/1_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/1_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/2_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/2_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/2_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/2_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/2_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/2_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/2_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/2_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/2_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/2_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/2_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/3_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/3_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/3_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/3_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/3_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/3_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/3_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/3_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/3_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/3_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/3_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/4_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/4_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/4_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/4_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/4_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/4_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/4_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/4_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/4_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/4_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/4_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/5_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/5_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/5_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/5_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/5_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/5_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/5_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/5_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/5_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/5_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/5_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/6_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/6_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/6_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/6_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/6_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/6_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/6_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/6_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/6_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/6_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/6_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/7_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/7_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/7_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/7_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/7_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/7_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/7_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/7_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/7_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/7_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/7_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/8_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/8_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/8_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/8_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/8_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/8_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/8_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/8_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/8_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/8_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/8_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/9_0_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_0_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/9_0_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_0_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/9_1_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_1_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/9_1_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_1_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/9_2_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_2_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/9_2_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_2_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/9_3_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_3_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/9_3_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_3_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/9_4_leaves.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_4_leaves.png'
+'/tmp/bycob.0jcwja/assets/tree/9_4_trunk.png' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/9_4_trunk.png'
+'/tmp/bycob.0jcwja/assets/tree/habitats.json' -> '/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob/tree/habitats.json'
+[bycob_world] Concluído em 9s — saída em /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/bycob
+
+=== python3 -m tools.worldgen_lite.i2mesh --help ===
+usage: i2mesh.py [-h] --input INPUT --output OUTPUT [--obj OBJ]
+                 [--method {poisson,ball_pivoting,alpha_shape}]
+                 [--downscale DOWNSCALE] [--far FAR] [--near NEAR] [--quiet]
+
+Image (panorama) → 3D mesh sem GPU. WorldGen-Lite CPU.
+
+options:
+  -h, --help            show this help message and exit
+  --input INPUT         Panorama equirectangular (jpg/png)
+  --output OUTPUT       Output .ply path
+  --obj OBJ             Também exportar .obj
+  --method {poisson,ball_pivoting,alpha_shape}
+  --downscale DOWNSCALE
+  --far FAR
+  --near NEAR
+  --quiet
+
+=== bash /workspace/ai-3d-world-pipeline/tools/cli-wrappers/cubiquity_demo.sh --algorithm fractal_noise --size 32 --output-dir /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/cubiquity ===
+[cubiquity_demo] generating fractal_noise size=32 → /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/cubiquity/fractal.dag
+[cubiquity_demo] exporting pngs → /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/cubiquity/fractal_pngs
+[cubiquity_demo] OK
+/workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/cubiquity/fractal_pngs
+1 of 32
+2 of 32
+3 of 32
+4 of 32
+5 of 32
+6 of 32
+7 of 32
+8 of 32
+9 of 32
+10 of 32
+11 of 32
+12 of 32
+17 of 32
+13 of 32
+18 of 32
+14 of 32
+19 of 32
+15 of 32
+20 of 32
+16 of 32
+25 of 32
+21 of 32
+26 of 32
+22 of 32
+27 of 32
+23 of 32
+28 of 32
+24 of 32
+29 of 32
+31 of 32
+30 of 32
+32 of 32
+Generated in 0.059 seconds
+Saving volume as images       [============================================================] 0.153s
+
+=== /workspace/tools/blender-4.2.5-linux-x64/blender --background --python /workspace/ai-3d-world-pipeline/tools/python/asset_processor.py -- --input /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.obj --output /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.glb --max-tris 30000 --lod-levels 3 ===
+[asset_processor] Importando /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.obj
+[asset_processor] 1 mesh(s) importada(s)
+[asset_processor] Decimando terrain: 407914 → ~30000 triângulos (ratio=0.074)
+[asset_processor] Gerando 3 LODs
+[asset_processor] Exportando /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.glb
+INFO Draco mesh compression is available, use library at /run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/tools/blender-4.2.5-linux-x64/4.2/python/lib/python3.11/site-packages/libextern_draco.so
+09:34:43 | INFO: Starting glTF 2.0 export
+09:34:43 | INFO: Extracting primitive: terrain
+09:34:43 | WARNING: The active Vertex Color will not be exported, as it is not used in the node tree of the material
+09:34:43 | INFO: Primitives created: 1
+09:34:43 | INFO: Extracting primitive: terrain.001
+09:34:43 | INFO: Primitives created: 1
+09:34:43 | WARNING: Mesh terrain.002 is not valid, and may be exported wrongly
+09:34:43 | INFO: Extracting primitive: terrain.002
+09:34:43 | INFO: Primitives created: 1
+09:34:43 | INFO: Finished glTF 2.0 export in 0.27972984313964844 s
+Blender 4.2.5 LTS (hash 27be13ad2d5a built 2024-12-17 01:31:17)
+OBJ import of 'terrain.obj' took 1715.99 ms
+
+[asset_processor] Meta salvo em /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.meta.json
+[asset_processor] ✓ Concluído
+could not get a list of mounted file-systems
+
+=== python3 -m tools.python.gltf_validator --input /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.glb ===
+{
+  "valid": false,
+  "error": "gltflib n\u00e3o instalado (pip install gltflib)"
+}
+
+=== python3 -m tools.python.create_game_scene --glb /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.glb --output /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/godot_project ===
+[create_game_scene] glb: /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/terrain.glb (7,022,184 bytes)
+[create_game_scene] output: /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/godot_project
+  [assets] world.glb (7,022,184 bytes)
+  [config] project.godot (WASD inputs)
+  [scripts] player.gd (CharacterBody3D + Camera + WASD + mouse look)
+  [scenes] main.tscn (terrain + sun + player + camera)
+
+✓ Projeto Godot criado em: /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/godot_project
+  Para rodar: godot --path /workspace/ai-3d-world-pipeline/outputs/gamefactory_demo/godot_project
+  Controles: WASD = mover, Space = pular, Mouse = olhar, Esc = liberar cursor
