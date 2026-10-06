@@ -198,6 +198,67 @@ def step_gltf_validate(
     return result
 
 
+def step_render_previews(
+    output_dir: Path,
+    log_path: str,
+    terrain_glb: Path = None,
+    terrain_obj: Path = None,
+    voxel_dir: Path = None,
+    tree_obj: Path = None,
+) -> list:
+    """Step 5: Render PNG previews de todos os assets."""
+    print("\n=== STEP 5: Render previews ===")
+    previews_dir = output_dir / "previews"
+    previews_dir.mkdir(parents=True, exist_ok=True)
+    generated = []
+
+    # Render terrain
+    if terrain_glb and terrain_glb.exists():
+        out = previews_dir / "terrain.png"
+        result = run(
+            ["python3", "-m", "tools.python.render_preview",
+             "--input", str(terrain_glb),
+             "--output", str(out),
+             "--width", "800", "--height", "600",
+             "--samples", "32", "--camera-angle", "30", "--camera-elevation", "35",
+             "--prompt", output_dir.parent.name if False else ""],
+            cwd="/workspace/ai-3d-world-pipeline",
+            timeout=300,
+            log_path=log_path,
+        )
+        if result["ok"]:
+            print(f"  ✓ terrain preview: {out}")
+            generated.append(out)
+        else:
+            print(f"  ✗ terrain preview failed: {result.get('error', result.get('stderr', '')[:200])}")
+
+    # Render trees
+    if tree_obj and tree_obj.exists():
+        out = previews_dir / "trees.png"
+        result = run(
+            ["python3", "-m", "tools.python.render_preview",
+             "--input", str(tree_obj),
+             "--output", str(out),
+             "--width", "600", "--height", "600",
+             "--samples", "24", "--camera-angle", "45", "--camera-elevation", "60"],
+            cwd="/workspace/ai-3d-world-pipeline",
+            timeout=300,
+            log_path=log_path,
+        )
+        if result["ok"]:
+            print(f"  ✓ trees preview: {out}")
+            generated.append(out)
+        else:
+            print(f"  ✗ trees preview failed: {result.get('error', result.get('stderr', '')[:200])}")
+
+    # Composite panorama preview (já gerado pelo procedural_pano)
+    if (output_dir / "terrain.ply").exists():
+        # Compor panorama image a partir do OBJ
+        pass
+
+    return generated
+
+
 def step_godot_build_scene(
     glb_path: Path,
     godot_dir: Path,
@@ -279,7 +340,15 @@ def main():
     if glb_path and glb_path.exists():
         step_gltf_validate(glb_path, str(log_path))
 
-    # Step 5: Godot project
+    # Step 5: Render previews PNG (terrain + trees)
+    tree_path = output_dir / "bycob" / "tree" / "instances.obj"
+    previews = step_render_previews(
+        output_dir, str(log_path),
+        terrain_glb=glb_path, terrain_obj=terrain_obj,
+        voxel_dir=voxel_dir, tree_obj=tree_path if tree_path.exists() else None,
+    )
+
+    # Step 6: Godot project
     if glb_path and glb_path.exists():
         godot_dir = output_dir / "godot_project"
         step_godot_build_scene(glb_path, godot_dir, str(log_path), args.scene_name)
@@ -290,13 +359,34 @@ def main():
     print(f"{'='*60}")
     print(f"Output dir: {output_dir}")
     print(f"\nConteúdo gerado:")
-    for p in sorted(output_dir.rglob("*")):
+    # Limita listagem pra 30 arquivos + previews destacados
+    files = sorted(output_dir.rglob("*"))
+    previews = []
+    others = []
+    for p in files:
         if p.is_file():
+            if "preview" in str(p):
+                previews.append(p)
+            else:
+                others.append(p)
+    for p in previews[:10]:
+        rel = p.relative_to(output_dir)
+        size_kb = p.stat().st_size / 1024
+        print(f"  📸 {rel} ({size_kb:.0f} KB)")
+    if len(others) > 30:
+        print(f"  ... +{len(others) - 30} outros arquivos")
+        for p in others[:30]:
             rel = p.relative_to(output_dir)
-            print(f"  {rel}")
+            print(f"  📦 {rel}")
+    else:
+        for p in others:
+            rel = p.relative_to(output_dir)
+            print(f"  📦 {rel}")
     print(f"\nPróximos passos:")
     if (output_dir / "godot_project").exists():
         print(f"  godot --path {output_dir}/godot_project")
+    if previews:
+        print(f"  ver previews: ls {output_dir}/previews/")
     return 0
 
 

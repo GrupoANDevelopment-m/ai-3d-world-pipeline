@@ -7,13 +7,13 @@
                 "workers": [
                     {
                         "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 2.9151718775523647,
+                        "startWeight": 6.951285532230122,
                         "weightLambda": 2.0,
-                        "sideRatio": 0.42324019755998695,
-                        "sideSplit": 1,
-                        "endSplit": 9,
-                        "shapeFactor": 6.196476326536904,
-                        "bendFactor": 0.27875239149319766
+                        "sideRatio": 0.8317581596053731,
+                        "sideSplit": 2,
+                        "endSplit": 13,
+                        "shapeFactor": 4.809807675194958,
+                        "bendFactor": 0.5695117757931987
                     },
                     {
                         "type": "TreeBillboardWorker"
@@ -34,10 +34,10 @@
             },
             "habitat": {
                 "sea": false,
-                "density": 0.09608331710421803,
+                "density": 0.060051489905534,
                 "altitude": {
-                    "x": 488.5842934162114,
-                    "y": 699.6524621846397
+                    "x": -40.46649041972048,
+                    "y": 717.2180227941788
                 },
                 "humidity": {
                     "x": 0.0,
@@ -45,7 +45,7 @@
                 },
                 "slope": {
                     "x": 0.0,
-                    "y": 1.1187089637749233
+                    "y": 1.0353081481846332
                 },
                 "temperature": {
                     "x": 0.0,
@@ -60,13 +60,13 @@
                 "workers": [
                     {
                         "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 1.7739986203327805,
+                        "startWeight": 1.7000361906019875,
                         "weightLambda": 2.0,
-                        "sideRatio": 0.7138560912162283,
+                        "sideRatio": 0.7352095190130066,
                         "sideSplit": 0,
-                        "endSplit": 4,
-                        "shapeFactor": 7.465502522144518,
-                        "bendFactor": 0.8291058564951654
+                        "endSplit": 6,
+                        "shapeFactor": 7.196581751901496,
+                        "bendFactor": 0.5692741625611917
                     },
                     {
                         "type": "TreeBillboardWorker"
@@ -87,10 +87,10 @@
             },
             "habitat": {
                 "sea": false,
-                "density": 0.12456414436744733,
+                "density": 0.1273278390962726,
                 "altitude": {
-                    "x": 449.6238914054866,
-                    "y": 678.2658930726364
+                    "x": -65.49984971641803,
+                    "y": 171.93766586194747
                 },
                 "humidity": {
                     "x": 0.0,
@@ -98,7 +98,7 @@
                 },
                 "slope": {
                     "x": 0.0,
-                    "y": 1.1652791349225483
+                    "y": 1.1691882705053936
                 },
                 "temperature": {
                     "x": 0.0,
@@ -113,13 +113,66 @@
                 "workers": [
                     {
                         "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 1.3162387561511944,
+                        "startWeight": 5.52768296889499,
                         "weightLambda": 2.0,
-                        "sideRatio": 0.6928140646344622,
+                        "sideRatio": 0.6708038125137039,
+                        "sideSplit": 4,
+                        "endSplit": 6,
+                        "shapeFactor": 10.454450589332142,
+                        "bendFactor": 0.43482586836729156
+                    },
+                    {
+                        "type": "TreeBillboardWorker"
+                    },
+                    {
+                        "type": "TrunkGenerator",
+                        "segmentCount": 9
+                    },
+                    {
+                        "type": "LeavesGenerator"
+                    }
+                ],
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "habitat": {
+                "sea": false,
+                "density": 0.068104807682526,
+                "altitude": {
+                    "x": 117.19286476868246,
+                    "y": 978.6645403638659
+                },
+                "humidity": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "slope": {
+                    "x": 0.0,
+                    "y": 1.0572649951975209
+                },
+                "temperature": {
+                    "x": 0.0,
+                    "y": 40.0
+                }
+            }
+        },
+        {
+            "features": {
+                "key": "",
+                "children": [],
+                "workers": [
+                    {
+                        "type": "TreeSkelettonHoGBasedWorker",
+                        "startWeight": 3.3432409896643797,
+                        "weightLambda": 2.0,
+                        "sideRatio": 0.5329087330489072,
                         "sideSplit": 2,
                         "endSplit": 2,
-                        "shapeFactor": 7.008552613098568,
-                        "bendFactor": 0.3685934925338633
+                        "shapeFactor": 9.339676839545965,
+                        "bendFactor": 0.41286919312953315
                     },
                     {
                         "type": "TreeBillboardWorker"
@@ -140,10 +193,10 @@
             },
             "habitat": {
                 "sea": false,
-                "density": 0.14511962483224889,
+                "density": 0.0893381339300947,
                 "altitude": {
-                    "x": 713.3320153617236,
-                    "y": 1365.8651451359174
+                    "x": 565.8139330469207,
+                    "y": 874.6595252184691
                 },
                 "humidity": {
                     "x": 0.0,
@@ -151,7 +204,7 @@
                 },
                 "slope": {
                     "x": 0.0,
-                    "y": 1.192327583082544
+                    "y": 1.1056227966359944
                 },
                 "temperature": {
                     "x": 0.0,
@@ -166,119 +219,13 @@
                 "workers": [
                     {
                         "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 2.5047950379036885,
+                        "startWeight": 3.186994636834959,
                         "weightLambda": 2.0,
-                        "sideRatio": 0.5561642032424309,
-                        "sideSplit": 3,
-                        "endSplit": 8,
-                        "shapeFactor": 16.96205392760868,
-                        "bendFactor": 0.2375555958507372
-                    },
-                    {
-                        "type": "TreeBillboardWorker"
-                    },
-                    {
-                        "type": "TrunkGenerator",
-                        "segmentCount": 9
-                    },
-                    {
-                        "type": "LeavesGenerator"
-                    }
-                ],
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                }
-            },
-            "habitat": {
-                "sea": false,
-                "density": 0.10408709502292375,
-                "altitude": {
-                    "x": -49.65825409926194,
-                    "y": 836.6349205468462
-                },
-                "humidity": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "slope": {
-                    "x": 0.0,
-                    "y": 1.1330999654648697
-                },
-                "temperature": {
-                    "x": 0.0,
-                    "y": 40.0
-                }
-            }
-        },
-        {
-            "features": {
-                "key": "",
-                "children": [],
-                "workers": [
-                    {
-                        "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 6.680048046559369,
-                        "weightLambda": 2.0,
-                        "sideRatio": 0.5353905585340174,
-                        "sideSplit": 1,
-                        "endSplit": 4,
-                        "shapeFactor": 9.512995278693407,
-                        "bendFactor": 0.46374440123935919
-                    },
-                    {
-                        "type": "TreeBillboardWorker"
-                    },
-                    {
-                        "type": "TrunkGenerator",
-                        "segmentCount": 9
-                    },
-                    {
-                        "type": "LeavesGenerator"
-                    }
-                ],
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                }
-            },
-            "habitat": {
-                "sea": false,
-                "density": 0.06138436926749399,
-                "altitude": {
-                    "x": -18.188492466772574,
-                    "y": 533.5820726245794
-                },
-                "humidity": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "slope": {
-                    "x": 0.0,
-                    "y": 1.039108328284391
-                },
-                "temperature": {
-                    "x": 0.0,
-                    "y": 40.0
-                }
-            }
-        },
-        {
-            "features": {
-                "key": "",
-                "children": [],
-                "workers": [
-                    {
-                        "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 0.7505408081276953,
-                        "weightLambda": 2.0,
-                        "sideRatio": 0.7316853494503339,
+                        "sideRatio": 0.4352145867212214,
                         "sideSplit": 1,
                         "endSplit": 5,
-                        "shapeFactor": 11.294554149177966,
-                        "bendFactor": 0.48462739706988869
+                        "shapeFactor": 5.849963783130797,
+                        "bendFactor": 0.34063518986398647
                     },
                     {
                         "type": "TreeBillboardWorker"
@@ -299,10 +246,10 @@
             },
             "habitat": {
                 "sea": false,
-                "density": 0.19216092420582418,
+                "density": 0.0916440767865701,
                 "altitude": {
-                    "x": -72.0341989061905,
-                    "y": 491.31049732514529
+                    "x": 51.1154511419318,
+                    "y": 1037.598786281006
                 },
                 "humidity": {
                     "x": 0.0,
@@ -310,7 +257,7 @@
                 },
                 "slope": {
                     "x": 0.0,
-                    "y": 1.2406831781386508
+                    "y": 1.1102024073622368
                 },
                 "temperature": {
                     "x": 0.0,
@@ -325,119 +272,13 @@
                 "workers": [
                     {
                         "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 1.7193146641922384,
+                        "startWeight": 2.708558430409098,
                         "weightLambda": 2.0,
-                        "sideRatio": 0.5713259065688998,
-                        "sideSplit": 5,
-                        "endSplit": 4,
-                        "shapeFactor": 10.050646520033716,
-                        "bendFactor": 0.23801864901033888
-                    },
-                    {
-                        "type": "TreeBillboardWorker"
-                    },
-                    {
-                        "type": "TrunkGenerator",
-                        "segmentCount": 9
-                    },
-                    {
-                        "type": "LeavesGenerator"
-                    }
-                ],
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                }
-            },
-            "habitat": {
-                "sea": false,
-                "density": 0.1265907605401702,
-                "altitude": {
-                    "x": 172.819666455922,
-                    "y": 683.486910917762
-                },
-                "humidity": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "slope": {
-                    "x": 0.0,
-                    "y": 1.1681547056154414
-                },
-                "temperature": {
-                    "x": 0.0,
-                    "y": 40.0
-                }
-            }
-        },
-        {
-            "features": {
-                "key": "",
-                "children": [],
-                "workers": [
-                    {
-                        "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 1.9921694474534535,
-                        "weightLambda": 2.0,
-                        "sideRatio": 0.542347451205329,
-                        "sideSplit": 2,
-                        "endSplit": 3,
-                        "shapeFactor": 4.562139082129191,
-                        "bendFactor": 0.7706192441059323
-                    },
-                    {
-                        "type": "TreeBillboardWorker"
-                    },
-                    {
-                        "type": "TrunkGenerator",
-                        "segmentCount": 9
-                    },
-                    {
-                        "type": "LeavesGenerator"
-                    }
-                ],
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                }
-            },
-            "habitat": {
-                "sea": false,
-                "density": 0.11730771435448995,
-                "altitude": {
-                    "x": 747.1296547767187,
-                    "y": 1259.191355831264
-                },
-                "humidity": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "slope": {
-                    "x": 0.0,
-                    "y": 1.1545566489481909
-                },
-                "temperature": {
-                    "x": 0.0,
-                    "y": 40.0
-                }
-            }
-        },
-        {
-            "features": {
-                "key": "",
-                "children": [],
-                "workers": [
-                    {
-                        "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 1.9927993750780902,
-                        "weightLambda": 2.0,
-                        "sideRatio": 0.9591146686142712,
+                        "sideRatio": 0.44577458716312876,
                         "sideSplit": 1,
-                        "endSplit": 2,
-                        "shapeFactor": 6.906053752459378,
-                        "bendFactor": 0.752356853468749
+                        "endSplit": 11,
+                        "shapeFactor": 15.20909694170974,
+                        "bendFactor": 0.3683234632654264
                     },
                     {
                         "type": "TreeBillboardWorker"
@@ -458,10 +299,10 @@
             },
             "habitat": {
                 "sea": false,
-                "density": 0.1172884653185707,
+                "density": 0.09988913588071793,
                 "altitude": {
-                    "x": 524.5762327203836,
-                    "y": 1299.611417455906
+                    "x": 43.06317327676393,
+                    "y": 781.0882244628845
                 },
                 "humidity": {
                     "x": 0.0,
@@ -469,7 +310,7 @@
                 },
                 "slope": {
                     "x": 0.0,
-                    "y": 1.1545272778889866
+                    "y": 1.125696595231828
                 },
                 "temperature": {
                     "x": 0.0,
@@ -484,13 +325,13 @@
                 "workers": [
                     {
                         "type": "TreeSkelettonHoGBasedWorker",
-                        "startWeight": 2.1917354116109206,
+                        "startWeight": 0.9566055491231867,
                         "weightLambda": 2.0,
-                        "sideRatio": 0.5946374258780387,
-                        "sideSplit": 9,
-                        "endSplit": 3,
-                        "shapeFactor": 7.086649300500646,
-                        "bendFactor": 0.7563747359198365
+                        "sideRatio": 0.7256195463910883,
+                        "sideSplit": 2,
+                        "endSplit": 2,
+                        "shapeFactor": 9.586683859104465,
+                        "bendFactor": 0.38454373925219556
                     },
                     {
                         "type": "TreeBillboardWorker"
@@ -511,10 +352,10 @@
             },
             "habitat": {
                 "sea": false,
-                "density": 0.11162234439417056,
+                "density": 0.17040032942520043,
                 "altitude": {
-                    "x": -3.3477903042071519,
-                    "y": 721.8163286218164
+                    "x": 364.7309825106273,
+                    "y": 1051.076204842946
                 },
                 "humidity": {
                     "x": 0.0,
@@ -522,7 +363,166 @@
                 },
                 "slope": {
                     "x": 0.0,
-                    "y": 1.1456539617952626
+                    "y": 1.2202469481390673
+                },
+                "temperature": {
+                    "x": 0.0,
+                    "y": 40.0
+                }
+            }
+        },
+        {
+            "features": {
+                "key": "",
+                "children": [],
+                "workers": [
+                    {
+                        "type": "TreeSkelettonHoGBasedWorker",
+                        "startWeight": 0.9516296111614119,
+                        "weightLambda": 2.0,
+                        "sideRatio": 0.8077816863589636,
+                        "sideSplit": 4,
+                        "endSplit": 2,
+                        "shapeFactor": 6.682035819057982,
+                        "bendFactor": 0.41923188316763995
+                    },
+                    {
+                        "type": "TreeBillboardWorker"
+                    },
+                    {
+                        "type": "TrunkGenerator",
+                        "segmentCount": 9
+                    },
+                    {
+                        "type": "LeavesGenerator"
+                    }
+                ],
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "habitat": {
+                "sea": false,
+                "density": 0.170844085786545,
+                "altitude": {
+                    "x": 279.7936728957267,
+                    "y": 527.4590307209837
+                },
+                "humidity": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "slope": {
+                    "x": 0.0,
+                    "y": 1.2206936990947953
+                },
+                "temperature": {
+                    "x": 0.0,
+                    "y": 40.0
+                }
+            }
+        },
+        {
+            "features": {
+                "key": "",
+                "children": [],
+                "workers": [
+                    {
+                        "type": "TreeSkelettonHoGBasedWorker",
+                        "startWeight": 2.210014125582373,
+                        "weightLambda": 2.0,
+                        "sideRatio": 0.8603139898487728,
+                        "sideSplit": 3,
+                        "endSplit": 7,
+                        "shapeFactor": 13.44178882687175,
+                        "bendFactor": 0.5958746023949091
+                    },
+                    {
+                        "type": "TreeBillboardWorker"
+                    },
+                    {
+                        "type": "TrunkGenerator",
+                        "segmentCount": 9
+                    },
+                    {
+                        "type": "LeavesGenerator"
+                    }
+                ],
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "habitat": {
+                "sea": false,
+                "density": 0.1111396674922992,
+                "altitude": {
+                    "x": 989.7570521139924,
+                    "y": 1952.8639593028977
+                },
+                "humidity": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "slope": {
+                    "x": 0.0,
+                    "y": 1.1448764230823896
+                },
+                "temperature": {
+                    "x": 0.0,
+                    "y": 40.0
+                }
+            }
+        },
+        {
+            "features": {
+                "key": "",
+                "children": [],
+                "workers": [
+                    {
+                        "type": "TreeSkelettonHoGBasedWorker",
+                        "startWeight": 2.423630343820855,
+                        "weightLambda": 2.0,
+                        "sideRatio": 0.4040643951216087,
+                        "sideSplit": 3,
+                        "endSplit": 2,
+                        "shapeFactor": 15.84826735870882,
+                        "bendFactor": 0.5498034005699773
+                    },
+                    {
+                        "type": "TreeBillboardWorker"
+                    },
+                    {
+                        "type": "TrunkGenerator",
+                        "segmentCount": 9
+                    },
+                    {
+                        "type": "LeavesGenerator"
+                    }
+                ],
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "habitat": {
+                "sea": false,
+                "density": 0.10590231537201397,
+                "altitude": {
+                    "x": 1225.7861336553672,
+                    "y": 1902.9555240102766
+                },
+                "humidity": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "slope": {
+                    "x": 0.0,
+                    "y": 1.1362076774203185
                 },
                 "temperature": {
                     "x": 0.0,

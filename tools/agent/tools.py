@@ -414,6 +414,26 @@ class ToolRegistry:
         ))
 
         self.register(Tool(
+            name="render_preview",
+            description="Render thumbnail PNG de mesh 3D (.glb/.obj/.ply/.stl/.fbx) usando Blender headless. Câmera orbital configurável.",
+            parameters={
+                "input": ToolParameter("string", "Mesh 3D de entrada (.glb/.obj/.ply/.stl/.fbx)"),
+                "output": ToolParameter("string", "PNG de saída"),
+                "width": ToolParameter("integer", "Largura do render", required=False, default=800),
+                "height": ToolParameter("integer", "Altura do render", required=False, default=600),
+                "camera-angle": ToolParameter("number", "Ângulo horizontal câmera (graus)", required=False, default=30.0),
+                "camera-elevation": ToolParameter("number", "Elevação câmera (graus)", required=False, default=35.0),
+                "samples": ToolParameter("integer", "Amostras de render", required=False, default=32),
+                "engine": ToolParameter("string", "Render engine", enum=["BLENDER_EEVEE_NEXT", "CYCLES", "BLENDER_WORKBENCH"], required=False, default="BLENDER_EEVEE_NEXT"),
+                "distance": ToolParameter("number", "Distância da câmera (None=auto)", required=False),
+            },
+            category="analysis",
+            backend="python",
+            target="tools.python.render_preview",
+            timeout_s=300,
+        ))
+
+        self.register(Tool(
             name="asset_processor",
             description="Pipeline Python para processar assets 3D (OBJ/GLB) com LODs. Aceita --input, --output, --max-tris, --lod-levels, --collider.",
             parameters={
